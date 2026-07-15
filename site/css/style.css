@@ -1356,6 +1356,10 @@ nav {
    REDE DE INTELIGÊNCIA (/rede/) — tabela de CLIs
    ============================================ */
 
+.tabela-rede-wrap {
+    overflow-x: auto;
+}
+
 .tabela-rede {
     width: 100%;
     border-collapse: collapse;

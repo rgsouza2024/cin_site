@@ -67,8 +67,7 @@ module.exports = function (eleventyConfig) {
             );
     });
 
-    // Assets copiados como estão. Favicon e apple-touch-icon ainda faltam
-    // (CIN_PLANEJAMENTO.md, Seção 6 [A LEVANTAR]).
+    // Assets copiados como estão.
     eleventyConfig.addPassthroughCopy({
         "site/css": "css",
         "site/fonts": "fonts",
@@ -77,7 +76,9 @@ module.exports = function (eleventyConfig) {
         "site/menu.js": "menu.js",
         "site/acervo.js": "acervo.js",
         "site/cin_logo.webp": "cin_logo.webp",
-        "site/cjf_logo.png": "cjf_logo.png"
+        "site/cjf_logo.png": "cjf_logo.png",
+        "site/favicon.png": "favicon.png",
+        "site/apple-touch-icon.png": "apple-touch-icon.png"
     });
 
     return {
