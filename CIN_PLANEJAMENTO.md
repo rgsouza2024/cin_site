@@ -34,7 +34,9 @@ A primeira versão deste documento apresentava duas opções (federar do CEJ vs.
 
 ### Achado relevante ao apurar isso
 
-O `cej_site` só tem **5 Notas Técnicas** catalogadas em `data/documentos.json` (série `cej-cin`). Rodrigo estimou que existem **~50 NTs desde a criação do CIn em 2017**. Ou seja: **o gargalo real deste projeto não é técnico — é reunir e digitalizar as ~45 NTs que ainda não estão em lugar nenhum do sistema.** Isso precisa de um dono dentro da equipe do CIn e não se resolve com código. Ver Seção 17 (cronograma) e Seção 19 (riscos).
+O `cej_site` só tem **5 Notas Técnicas** catalogadas em `data/documentos.json` (série `cej-cin`). Rodrigo estimou que existem **~50 NTs desde a criação do CIn em 2017**. Ou seja: **o gargalo real deste projeto não é técnico — é reunir e digitalizar as ~45 NTs que ainda não estão em lugar nenhum do sistema.** Isso precisa de um dono dentro da equipe do CIn e não se resolve com código. Ver Seção 16 (cronograma) e Seção 17 (riscos).
+
+**Achado mais forte, confirmado em 15/07/2026:** o próprio portal oficial do CJF não tem uma listagem funcional de Notas Técnicas em nenhum dos dois caminhos onde deveria estar — `.../nucleo-de-estudo-e-pesquisa/notas-tecnicas` e `.../publicacoes-1/serie-cej-cnijf-1` retornam "Nenhum arquivo encontrado". As ~45 NTs faltantes provavelmente não estão a um clique de distância nem para quem tem acesso interno ao CJF; a Fase 1.5 é mais custosa do que uma simples exportação de listagem.
 
 ### Migração (não federação contínua)
 
@@ -206,7 +208,7 @@ Além do que a Seção 14 original do planejamento já listava (trocar `/#cin` p
 | **Fase 1.5 — Levantamento do acervo (NÃO é trabalho de engenharia)** | Reunir e digitalizar as ~45 NTs que faltam catalogar. Precisa de um dono na equipe do CIn. | Ninguém designado ainda — **risco maior do projeto**, ver Seção 19 |
 | **Fase 2 — Pipeline de busca** | Seção 10 completa: extração, cache, páginas por NT, Pagefind, UI de busca | Fase 1.5 ter ao menos um lote inicial de PDFs reais para testar a extração de verdade (não só os 5 já digitais) |
 | **Fase 3 — Lançamento** | Domínio/hospedagem definidos pela STI, cutover dos links no `cej_site` (Seção 15) | Decisão institucional de domínio |
-| **Fase 4 — Página "Rede de Inteligência"** | `/rede/`, mapa de CLIs | Levantamento de conteúdo com a equipe do CIn |
+| **Fase 4 — Página "Rede de Inteligência"** ✅ | `/rede/` publicada em 15/07/2026 com os 27 CLIs e a rede por TRF, fonte: documento oficial do CJF (não inventado). **Pendência restante**: confirmar com a equipe do CIn que a lista está atual — a fonte já registrava 9 de 27 Seções "em construção" e um link (RS) inconsistente com outro estado (MS), omitido em vez de propagado. | Concluída como rascunho sourced; falta validação humana da equipe do CIn |
 
 ---
 
