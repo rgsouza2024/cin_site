@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+
+    <!-- Favicon — arquivos ainda não existem, ver CIN_PLANEJAMENTO.md Seção 6 [A LEVANTAR] -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.nome }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    {%- if site.url %}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ site.url }}/assets/social-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    {%- endif %}
+
+    <!-- Dados estruturados (schema.org) — CIn é vinculado ao CEJ, não diretamente ao CJF
+         (ver README.md/ARQUITETURA.md do cej_site sobre a estrutura CGJF > CEJ > CIn) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "GovernmentOrganization",
+        "name": "Centro Nacional de Inteligência da Justiça Federal",
+        "alternateName": "CIn",
+        "parentOrganization": { "@type": "GovernmentOrganization", "name": "Centro de Estudos Judiciários" },
+        "email": "{{ contatos.email }}",
+        "telephone": "{{ contatos.telefone.href }}",
+        "contactPoint": [
+        {%- for canal in contatos.canais %}
+            { "@type": "ContactPoint", "contactType": {{ canal.assunto | jsonld | safe }}, "email": "{{ canal.email }}" }{% if not loop.last %},{% endif %}
+        {%- endfor %}
+        ],{% if site.url %}
+        "url": "{{ site.url }}",{% endif %}
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ contatos.enderecoEstruturado.logradouro }}",
+            "addressLocality": "{{ contatos.enderecoEstruturado.cidade }}",
+            "addressRegion": "{{ contatos.enderecoEstruturado.uf }}",
+            "postalCode": "{{ contatos.enderecoEstruturado.cep }}",
+            "addressCountry": "BR"
+        }
+    }
+    </script>
+
+    <!-- Fontes self-hosted (Inter e Montserrat, subset latin) — sem requisições a terceiros -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-700.woff2" crossorigin>
+    <link href="/css/fonts.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+    {#- Preload de imagem de hero por página (LCP) — sem imagens ainda, ver Seção 6 [A LEVANTAR].
+        Descomentar e apontar para o asset real assim que existir, seguindo o padrão condicional
+        já usado no cej_site (só pré-carrega a arte que realmente renderiza em cada página). #}
+
+</head>
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Header & Navigation Wrapper -->
+    <div class="header-wrapper" id="headerWrapper">
+        <!-- Header -->
+        <header>
+          <div class="container header-container">
+              <a href="/" class="logo">
+                  <!-- cin_logo.png ainda não existe — ver Seção 6 [A LEVANTAR] -->
+                  <img src="/cin_logo.png" alt="CIn - Centro Nacional de Inteligência da Justiça Federal" width="738" height="225">
+              </a>
+              <div class="header-right">
+                <img src="/cjf_logo.png" alt="Conselho da Justiça Federal" width="312" height="148" style="height: 100px; width: auto;">
+              </div>
+          </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+          <div class="nav-container">
+              <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+                  <span class="hamburger"><span></span><span></span><span></span></span>
+              </button>
+              <div class="nav-links" id="navLinks">
+                  <a href="/" class="nav-link{% if page.url == '/' %} active{% endif %}">{% icone "solid/house" %} Início</a>
+                  <a href="/sobre/" class="nav-link{% if page.url == '/sobre/' %} active{% endif %}">{% icone "solid/circle-info" %} Sobre</a>
+                  <a href="/estrutura/" class="nav-link{% if page.url == '/estrutura/' %} active{% endif %}">{% icone "solid/sitemap" %} Estrutura</a>
+                  {#- Notas Técnicas: entra aqui quando a Opção A/B (CIN_PLANEJAMENTO.md Seção 2) for resolvida e /notas-tecnicas/ existir -#}
+                  <a href="/#contato" class="nav-link">{% icone "solid/envelope" %} Contato</a>
+                  <a href="https://www.cjf.jus.br/" class="nav-link nav-link-destaque" target="_blank" rel="noopener noreferrer">{% icone "solid/landmark" %} CEJ {% icone "solid/arrow-up-right-from-square", "nav-external-icon" %}</a>
+              </div>
+          </div>
+        </nav>
+    </div>
+
+    <main id="conteudo">
+{{ content | safe }}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CIn</h3>
+                    <p>Centro Nacional de Inteligência da Justiça Federal, vinculado ao Centro de Estudos Judiciários (CEJ/CJF). Gestão estratégica e preventiva da litigiosidade com base em dados.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/estrutura/">Estrutura</a></li>
+                        <li><a href="/#contato">Contato</a></li>
+                        <li><a href="https://www.cjf.jus.br/" target="_blank" rel="noopener noreferrer">Portal do CEJ {% icone "solid/arrow-up-right-from-square", "nav-external-icon" %}</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><a href="mailto:{{ contatos.email }}">{{ contatos.email }}</a></li>
+                        <li><a href="tel:{{ contatos.telefone.href }}">{{ contatos.telefone.display }}</a></li>
+                        <li>{{ contatos.endereco | join("<br>") | safe }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {% anoAtual %} Centro Nacional de Inteligência da Justiça Federal - Conselho da Justiça Federal. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/menu.js"></script>
+</body>
+</html>

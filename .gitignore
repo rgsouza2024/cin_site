@@ -1,0 +1,17 @@
+# Sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logs e temporários
+*.log
+*.tmp
+*~
+
+# Backups manuais (usar git, não tar.gz)
+*.tar.gz
+*.zip
+
+# Build
+node_modules/
+_site/

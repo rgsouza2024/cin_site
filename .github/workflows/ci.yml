@@ -1,0 +1,35 @@
+name: CI
+
+# Valida os dados contra os schemas e gera o site a cada push.
+# Quando a hospedagem institucional (CJF/STI) for definida, o passo
+# de deploy entra ao final deste workflow publicando o conteúdo de _site/.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Menor privilégio: este workflow só lê o repositório
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Validar dados contra os schemas
+        run: npm run validar
+
+      - name: Gerar o site
+        run: npm run build

@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.cjf.jus.br/cej/schemas/documento/1.0",
+    "title": "Documento do acervo",
+    "description": "Um documento (PDF) do acervo de publicações do CEJ, catalogado a partir do portal do CJF. O snapshot data/documentos.json é gerado por npm run atualizar-acervo.",
+    "version": "1.0",
+    "type": "object",
+    "required": ["id", "serie", "titulo", "descricao", "autor", "ano", "url", "capa"],
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9/-]*$",
+            "description": "Identificador estável derivado do caminho do arquivo no portal (serie/segmento)."
+        },
+        "serie": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Slug da série, correspondente a uma entrada de 'series' no snapshot."
+        },
+        "titulo": {
+            "type": "string",
+            "minLength": 1
+        },
+        "descricao": {
+            "type": "string"
+        },
+        "autor": {
+            "type": ["string", "null"],
+            "description": "Extraído da descrição quando segue a convenção 'texto – Autor'."
+        },
+        "ano": {
+            "type": ["integer", "null"],
+            "minimum": 1900,
+            "maximum": 2100,
+            "description": "Ano de publicação extraído do título ou da descrição."
+        },
+        "url": {
+            "type": "string",
+            "pattern": "^https://",
+            "description": "Link de download direto no portal do CJF (fonte canônica do arquivo)."
+        },
+        "capa": {
+            "type": ["string", "null"],
+            "pattern": "^https://",
+            "description": "Imagem de capa no portal do CJF, quando disponível."
+        }
+    }
+}

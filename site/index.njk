@@ -1,0 +1,108 @@
+---
+layout: layouts/base.njk
+title: CIn - Centro Nacional de Inteligência da Justiça Federal
+description: Portal do CIn - Centro Nacional de Inteligência da Justiça Federal, vinculado ao CEJ/CJF
+---
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Centro Nacional de Inteligência <br> da Justiça Federal</h1>
+            <p>Gestão estratégica e preventiva da litigiosidade da Justiça Federal, com base em dados, articulação institucional e racionalização da prestação jurisdicional.</p>
+            <div class="cta-buttons">
+                <a href="/estrutura/" class="cta-button animate-on-scroll visible">Conheça a Estrutura</a>
+                <a href="/sobre/" class="cta-button secondary animate-on-scroll visible">Sobre o CIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missão Section (texto herdado de cej_site/site/index.njk#cin — mesmo conteúdo, agora como home própria) -->
+    <section class="cin-section" id="missao">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Missão do CIn</h2>
+            <div class="cin-text animate-on-scroll">
+                <p>É um órgão estratégico instituído para responder ao fenômeno da judicialização excessiva (litígios multitudinários e repetitivos) contra o Poder Público. Sua missão principal é a <strong>gestão estratégica e preventiva da litigiosidade com base em dados</strong>, na articulação institucional e na racionalização da prestação jurisdicional.</p>
+                <p>O modelo do CIn inspirou a criação de centros de inteligência em outros ramos da Justiça e no próprio Conselho Nacional de Justiça (Centro de Inteligência do Poder Judiciário - CIPJ).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como funciona (Features Section) -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Como Funciona</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        {% icone "solid/shield-halved" %}
+                    </div>
+                    <h3>Prevenção de Demandas Repetitivas</h3>
+                    <p>Identificação e tratamento adequado de litígios multitudinários antes que se espalhem pelo sistema de justiça.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        {% icone "solid/scale-balanced" %}
+                    </div>
+                    <h3>Gestão de Precedentes</h3>
+                    <p>Uniformização da jurisprudência e racionalização das decisões judiciais em temas de alta litigiosidade.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        {% icone "solid/chart-line" %}
+                    </div>
+                    <h3>Inteligência Analítica</h3>
+                    <p>Análise de dados para identificar padrões e tendências na litigiosidade contra o Poder Público.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        {% icone "solid/handshake" %}
+                    </div>
+                    <h3>Articulação Institucional</h3>
+                    <p>Diálogo com órgãos públicos para prevenir conflitos antes que cheguem ao Judiciário.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estrutura resumida -->
+    <section class="institutions-section" id="estrutura">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Estrutura</h2>
+            <p class="section-subtitle animate-on-scroll">O CIn é vinculado ao Centro de Estudos Judiciários (CEJ/CJF)</p>
+
+            <div class="structure-grid">
+                <div class="structure-card animate-on-scroll">
+                    <h3>{% icone "solid/lightbulb" %} Centro Nacional de Inteligência (CIn)</h3>
+                    <ul>
+                        <li><strong>Grupo Decisório:</strong> Fixa diretrizes e aprova as notas técnicas</li>
+                        <li><strong>Grupo Operacional:</strong> Conduz estudos, pesquisas e minutas de notas técnicas</li>
+                        <li><strong>RIJEF:</strong> Rede de Inteligência dos Juizados Especiais Federais</li>
+                        <li><strong>ASCIn:</strong> Assessoria do CIn</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-cta animate-on-scroll">
+                <a href="/estrutura/" class="cta-button">Ver Detalhamento da Estrutura</a>
+            </div>
+        </div>
+    </section>
+
+    {#- Notas Técnicas em destaque: entra aqui quando a Opção A/B (CIN_PLANEJAMENTO.md
+        Seção 2) for resolvida e houver dados reais para listar — não renderizar
+        cards vazios ou inventados. #}
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contato">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Contato</h2>
+            <p class="section-subtitle animate-on-scroll">Fale com o Centro Nacional de Inteligência da Justiça Federal</p>
+
+            <ul class="contact-lista animate-on-scroll">
+                {%- for canal in contatos.canais %}
+                <li class="contact-item">
+                    <span class="contact-assunto">{{ canal.assunto }}</span>
+                    <a href="mailto:{{ canal.email }}">{{ canal.email }}</a>
+                </li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </section>

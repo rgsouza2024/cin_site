@@ -1,0 +1,20 @@
+{
+    "_aviso": "PLACEHOLDER — valores fictícios só para o build não quebrar. Substituir por dados reais do CIn/ASCIn antes do lançamento (CIN_PLANEJAMENTO.md, checklist bloqueante).",
+    "email": "EMAIL_A_DEFINIR@cjf.jus.br",
+    "telefone": {
+        "display": "(61) 0000-0000",
+        "href": "+5561000000000"
+    },
+    "canais": [
+        { "assunto": "Notas Técnicas", "email": "EMAIL_A_DEFINIR@cjf.jus.br" }
+    ],
+    "endereco": [
+        "ENDEREÇO A DEFINIR"
+    ],
+    "enderecoEstruturado": {
+        "logradouro": "A DEFINIR",
+        "cidade": "Brasília",
+        "uf": "DF",
+        "cep": "00000-000"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://www.cjf.jus.br/cej/schemas/publicacao/1.0",
+    "title": "Publicação",
+    "description": "Contrato dos cards da seção Publicações Editoriais do site do CEJ. Validado no build; uso interno (não é formato de intercâmbio como o de eventos).",
+    "version": "1.0",
+    "type": "object",
+    "required": ["titulo", "descricao", "btnLabel", "href"],
+    "additionalProperties": false,
+    "properties": {
+        "titulo": {
+            "type": "string",
+            "minLength": 1
+        },
+        "descricao": {
+            "type": "string",
+            "minLength": 1
+        },
+        "icone": {
+            "type": "string",
+            "pattern": "^(solid|regular|brands)/[a-z0-9-]+$",
+            "description": "Opcional (não renderizado atualmente nos cards): ícone Font Awesome. Quando presente, o nome deve existir em node_modules/@fortawesome/fontawesome-free/svgs/."
+        },
+        "btnLabel": {
+            "type": "string",
+            "minLength": 1
+        },
+        "href": {
+            "type": "string",
+            "pattern": "^(https://|/)",
+            "description": "Destino do botão do card: URL HTTPS externa ou caminho interno do site (ex.: /publicacoes/?serie=monografias)."
+        },
+        "rotulo": {
+            "type": "string",
+            "description": "Opcional: rótulo exibido no rodapé do card quando não há contagem de série (ex.: Periódico Qualis A2)."
+        },
+        "serie": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "description": "Opcional: slug da série no acervo (data/documentos.json). Presente, o card mostra a contagem de documentos e aponta para o acervo interno."
+        },
+        "schema": {
+            "type": "string",
+            "description": "Opcional: tipo schema.org para o JSON-LD (ex.: Periodical). Ausente, assume CreativeWorkSeries."
+        }
+    }
+}
