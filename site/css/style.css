@@ -1352,6 +1352,58 @@ nav {
     color: var(--text-light);
 }
 
+/* ============================================
+   REDE DE INTELIGÊNCIA (/rede/) — tabela de CLIs
+   ============================================ */
+
+.tabela-rede {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+}
+
+.tabela-rede th,
+.tabela-rede td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabela-rede th {
+    background-color: var(--jf-blue);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.tabela-rede tbody tr:nth-child(even) {
+    background-color: var(--light-bg);
+}
+
+.tabela-rede a {
+    color: var(--jf-blue);
+    font-weight: 600;
+}
+
+.tabela-rede-vazio {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.tabela-rede-nota {
+    display: block;
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.tabela-rede-fonte {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
 /* Utilitário: visível apenas para leitores de tela */
 .sr-only {
     position: absolute;
