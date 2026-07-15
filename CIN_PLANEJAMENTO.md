@@ -1,6 +1,6 @@
 # Planejamento — Portal do CIn (spin-off do site do CEJ)
 
-Documento de referência para a construção do site do **Centro Nacional de Inteligência da Justiça Federal (CIn)** como spin-off do portal do CEJ. Vive hoje no repositório `cej_site` porque é o repositório de origem do fork; deve ser copiado para o `README.md`/`ARQUITETURA.md` do novo repositório assim que ele for criado, e então pode ser removido daqui.
+Documento de referência para a construção do site do **Centro Nacional de Inteligência da Justiça Federal (CIn)** como spin-off do portal do CEJ. Transferido para este repositório (`cin_site`) em 14/07/2026, quando a Fase 0 (scaffold) começou a ser executada — ver o commit inicial. Seu conteúdo deve migrar para `ARQUITETURA.md`/`README.md` deste repositório conforme cada seção for executada, e pode ser removido quando não sobrar nenhuma pendência aberta.
 
 **Como usar este documento:** cada seção técnica está escrita para ser executável — quando cita um arquivo, é o arquivo real do `cej_site` na data deste planejamento (14/07/2026); quando propõe um valor, é o valor real extraído do código, não uma aproximação do manual. Onde o conteúdo depende de informação que só a equipe do CIn tem (nomes de CLIs, cor institucional, domínio definitivo), está marcado explicitamente como **[A LEVANTAR]** — não foi inventado.
 
