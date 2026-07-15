@@ -60,9 +60,13 @@
 
     <!-- Custom CSS -->
     <link href="/css/style.css" rel="stylesheet">
-    {#- Preload de imagem de hero por página (LCP) — sem imagens ainda, ver Seção 6 [A LEVANTAR].
-        Descomentar e apontar para o asset real assim que existir, seguindo o padrão condicional
-        já usado no cej_site (só pré-carrega a arte que realmente renderiza em cada página). #}
+    {%- if page.url == '/' %}
+    <link class="lcp-preload" rel="preload" as="image" href="/assets/cin-arte-02.webp" fetchpriority="high">
+    {%- elif page.url == '/sobre/' %}
+    <link class="lcp-preload" rel="preload" as="image" href="/assets/cin-arte-03.webp" fetchpriority="high" media="(min-width: 769px)">
+    {%- elif page.url == '/estrutura/' %}
+    <link class="lcp-preload" rel="preload" as="image" href="/assets/cin-arte-01.webp" fetchpriority="high" media="(min-width: 769px)">
+    {%- endif %}
 
 </head>
 <body>
@@ -74,8 +78,7 @@
         <header>
           <div class="container header-container">
               <a href="/" class="logo">
-                  <!-- cin_logo.png ainda não existe — ver Seção 6 [A LEVANTAR] -->
-                  <img src="/cin_logo.png" alt="CIn - Centro Nacional de Inteligência da Justiça Federal" width="738" height="225">
+                  <img src="/cin_logo.webp" alt="CIn - Centro Nacional de Inteligência da Justiça Federal" width="918" height="483">
               </a>
               <div class="header-right">
                 <img src="/cjf_logo.png" alt="Conselho da Justiça Federal" width="312" height="148" style="height: 100px; width: auto;">

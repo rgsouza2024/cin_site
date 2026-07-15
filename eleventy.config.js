@@ -67,15 +67,16 @@ module.exports = function (eleventyConfig) {
             );
     });
 
-    // Assets copiados como estão. Logo, favicon e imagens próprias do CIn
-    // entram aqui quando os arquivos existirem (CIN_PLANEJAMENTO.md, Seção 6).
+    // Assets copiados como estão. Favicon e apple-touch-icon ainda faltam
+    // (CIN_PLANEJAMENTO.md, Seção 6 [A LEVANTAR]).
     eleventyConfig.addPassthroughCopy({
         "site/css": "css",
         "site/fonts": "fonts",
         "site/assets": "assets",
         "site/script.js": "script.js",
         "site/menu.js": "menu.js",
-        "site/acervo.js": "acervo.js"
+        "site/acervo.js": "acervo.js",
+        "site/cin_logo.webp": "cin_logo.webp"
     });
 
     return {
