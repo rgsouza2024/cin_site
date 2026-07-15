@@ -1230,6 +1230,10 @@ nav {
     background-color: var(--light-bg);
 }
 
+.acervo-section--branco {
+    background-color: var(--white);
+}
+
 .acervo-busca-group input[type="search"] {
     padding: 10px 15px;
     border: 1px solid var(--border-color);
