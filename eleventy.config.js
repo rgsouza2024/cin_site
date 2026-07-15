@@ -76,7 +76,8 @@ module.exports = function (eleventyConfig) {
         "site/script.js": "script.js",
         "site/menu.js": "menu.js",
         "site/acervo.js": "acervo.js",
-        "site/cin_logo.webp": "cin_logo.webp"
+        "site/cin_logo.webp": "cin_logo.webp",
+        "site/cjf_logo.png": "cjf_logo.png"
     });
 
     return {
