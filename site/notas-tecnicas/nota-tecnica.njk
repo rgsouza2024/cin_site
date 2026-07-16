@@ -34,7 +34,7 @@ eleventyComputed:
                     <h3>Sobre este documento</h3>
                     <p>Série: Notas Técnicas do CIn</p>
                     {%- if nt.autor %}<p>{{ nt.autor }}</p>{%- endif %}
-                    <p><time datetime="{{ nt.ano }}">{{ nt.ano }}</time></p>
+                    <p><time datetime="{{ nt.ano }}" data-pagefind-filter="ano:{{ nt.ano }}">{{ nt.ano }}</time></p>
                     <a class="cta-button" href="{{ nt.url }}" target="_blank" rel="noopener noreferrer">{% icone "solid/file-arrow-down" %} Baixar PDF original</a>
                 </div>
             </div>

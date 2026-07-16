@@ -47,6 +47,10 @@ module.exports = function (eleventyConfig) {
     // de tabelas/colunas (ver CIN_PLANEJAMENTO.md, Seção 17, riscos).
     eleventyConfig.addFilter("limite", (lista, n) => lista.slice(0, n));
 
+    eleventyConfig.addFilter("anosUnicos", (lista) =>
+        [...new Set(lista.map((item) => item.ano))].sort((a, b) => b - a)
+    );
+
     eleventyConfig.addFilter("paragrafos", (texto) =>
         (texto || "")
             .split(/\n\s*\n+/)

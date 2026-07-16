@@ -20,11 +20,22 @@ permalink: /notas-tecnicas/
     <!-- Busca em texto integral (Pagefind) -->
     <section class="acervo-section">
         <div class="container">
-            <div class="busca-nts-wrap" id="buscaNtsWrap">
-                <label for="buscaNts" class="sr-only">Buscar no conteúdo das Notas Técnicas</label>
-                <span class="busca-nts-icone">{% usarIcone "icone-busca" %}</span>
-                <input type="search" id="buscaNts" class="busca-nts-input" placeholder="Buscar no conteúdo completo das Notas Técnicas…" autocomplete="off">
-                <button type="button" id="buscaNtsLimpar" class="busca-nts-limpar" hidden aria-label="Limpar busca">{% usarIcone "icone-limpar" %}</button>
+            <div class="busca-nts-linha">
+                <div class="busca-nts-wrap" id="buscaNtsWrap">
+                    <label for="buscaNts" class="sr-only">Buscar no conteúdo das Notas Técnicas</label>
+                    <span class="busca-nts-icone">{% usarIcone "icone-busca" %}</span>
+                    <input type="search" id="buscaNts" class="busca-nts-input" placeholder="Buscar no conteúdo completo das Notas Técnicas…" autocomplete="off">
+                    <button type="button" id="buscaNtsLimpar" class="busca-nts-limpar" hidden aria-label="Limpar busca">{% usarIcone "icone-limpar" %}</button>
+                </div>
+                <div class="notas-filtro-ano-wrap">
+                    <label for="anoSelect" class="sr-only">Filtrar por ano</label>
+                    <select id="anoSelect" class="notas-filtro-ano">
+                        <option value="">Todos os anos</option>
+                        {%- for ano in notasTecnicas | anosUnicos %}
+                        <option value="{{ ano }}">{{ ano }}</option>
+                        {%- endfor %}
+                    </select>
+                </div>
             </div>
             <p class="acervo-contagem" id="buscaContagem" aria-live="polite"></p>
 
