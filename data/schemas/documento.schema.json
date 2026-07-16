@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.cjf.jus.br/cej/schemas/documento/1.0",
     "title": "Documento do acervo",
-    "description": "Um documento (PDF) do acervo de publicações do CEJ, catalogado a partir do portal do CJF. O snapshot data/documentos.json é gerado por npm run atualizar-acervo.",
+    "description": "Um documento (PDF) do acervo do CIn. Diferente do cej_site (Opção A, arquivo no portal do CJF), o cin_site tem custódia própria dos PDFs — url aponta para /assets/notas-tecnicas/ dentro do próprio site.",
     "version": "1.0",
     "type": "object",
     "required": ["id", "serie", "titulo", "descricao", "autor", "ano", "url", "capa"],
@@ -37,13 +37,13 @@
         },
         "url": {
             "type": "string",
-            "pattern": "^https://",
-            "description": "Link de download direto no portal do CJF (fonte canônica do arquivo)."
+            "pattern": "^(https://|/)",
+            "description": "Caminho interno (custódia própria, ex.: /assets/notas-tecnicas/nt-2018-18.pdf) ou link direto no portal do CJF. Somente HTTPS ou caminho interno — bloqueia URIs javascript:."
         },
         "capa": {
             "type": ["string", "null"],
-            "pattern": "^https://",
-            "description": "Imagem de capa no portal do CJF, quando disponível."
+            "pattern": "^(https://|/)",
+            "description": "Imagem de capa, própria ou no portal do CJF, quando disponível."
         }
     }
 }

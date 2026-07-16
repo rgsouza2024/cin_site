@@ -205,8 +205,8 @@ Além do que a Seção 14 original do planejamento já listava (trocar `/#cin` p
 |---|---|---|
 | **Fase 0 — Setup** ✅ | Scaffold, git, build funcionando | Concluída 14/07/2026 |
 | **Fase 1 — MVP institucional** ✅ | Início/Sobre/Estrutura com conteúdo real | Concluída 14/07/2026 |
-| **Fase 1.5 — Levantamento do acervo (NÃO é trabalho de engenharia)** | Reunir e digitalizar as ~45 NTs que faltam catalogar. Precisa de um dono na equipe do CIn. Índice parcial já conhecido (15/07/2026, por citação em material institucional, **sem os arquivos**): NT 06/2018, 16/2018, 18/2018, 34/2021, 43/2023, 48/2024, 50/2024, 55/2025, 56/2025, 57/2025, 62/2025, 63/2025 — 12 números confirmados de ~50, ponto de partida para a busca dos PDFs, não substitui o levantamento. | Ninguém designado ainda — **risco maior do projeto**, ver Seção 17 |
-| **Fase 2 — Pipeline de busca** | Seção 10 completa: extração, cache, páginas por NT, Pagefind, UI de busca | Fase 1.5 ter ao menos um lote inicial de PDFs reais para testar a extração de verdade (não só os 5 já digitais) |
+| **Fase 1.5 — Levantamento do acervo** ✅ | Resolvida em 15-16/07/2026: Rodrigo tinha o arquivo pessoal completo (Google Drive, `Notas Técnicas/pdfs`) — 73 PDFs, NT 01/2017 a NT 68/2026, ~72MB. Não foi preciso reunir/digitalizar nada; era uma questão de acesso, não de existência. | Concluída |
+| **Fase 2 — Pipeline de busca** ✅ | Seção 10 completa e validada contra dados reais (16/07/2026): `pdf-parse@1.1.1` (não `pdfjs-dist` — decisão da Seção 3 confirmada no teste real), 72 de 73 PDFs extraídos com metadado de qualidade (ver Seção 19a), catálogo com 72 Notas Técnicas, 72 páginas individuais geradas, Pagefind indexando 78 páginas / 17.750 palavras. | Concluída |
 | **Fase 3 — Lançamento** | Domínio/hospedagem definidos pela STI, cutover dos links no `cej_site` (Seção 15) | Decisão institucional de domínio |
 | **Fase 4 — Página "Rede de Inteligência"** ✅ | `/rede/` publicada em 15/07/2026 com os 27 CLIs e a rede por TRF, fonte: documento oficial do CJF (não inventado). **Pendência restante**: confirmar com a equipe do CIn que a lista está atual — a fonte já registrava 9 de 27 Seções "em construção" e um link (RS) inconsistente com outro estado (MS), omitido em vez de propagado. | Concluída como rascunho sourced; falta validação humana da equipe do CIn |
 
@@ -216,12 +216,12 @@ Além do que a Seção 14 original do planejamento já listava (trocar `/#cin` p
 
 | Risco | Impacto | Mitigação |
 |---|---|---|
-| Ninguém assume a Fase 1.5 (levantamento das ~45 NTs) | Projeto tecnicamente pronto, acervo real continua com 10% do conteúdo | Apontar isso como decisão de governança a Rodrigo/equipe do CIn — não é algo que se resolve com mais código |
-| Extração de texto com qualidade ruim em PDFs com tabelas/colunas complexas | Busca retorna trechos fragmentados ou fora de ordem para NTs com layout mais elaborado | Testar `pdf-parse` contra uma amostra real de NTs (não só os 5 já digitais) antes de assumir que a extração simples basta; considerar `pdfjs-dist` como alternativa se a qualidade for ruim |
-| Repositório cresce além do confortável para git conforme mais PDFs entram | Clones lentos, possível bloqueio do GitHub em arquivo individual >100MB | Gatilho de revisão já definido na Seção 2 — migrar para blob storage quando (se) o volume real justificar |
-| CSP bloquear o WASM do Pagefind em produção sem ninguém perceber em dev | Busca quebrada silenciosamente só em produção (CSP costuma estar mais frouxa em `npm run start` local) | Testar a build de produção com a CSP real do `vercel.json` antes do lançamento, não só o servidor de desenvolvimento do Eleventy |
+| Repositório cresce além do confortável para git conforme mais PDFs entram | Hoje 73 PDFs, ~72MB — confortável (limite prático do GitHub é ~1GB) | Gatilho de revisão já definido na Seção 2 — migrar para blob storage quando (se) o volume real justificar. Não há indício disso hoje. |
+| CSP bloquear o WASM do Pagefind em produção sem ninguém perceber em dev | Busca quebrada silenciosamente só em produção (CSP costuma estar mais frouxa em `npm run start` local) | Testar a build de produção com a CSP real do `vercel.json` antes do lançamento, não só o servidor de desenvolvimento do Eleventy — **ainda não feito** |
 
-*(Riscos da Seção 18 original — tokens de cor do manual desatualizado, Opção A/B ambígua, página de CLIs inventada, links unidirecionais, domínio atrasando, JS morto de calendário — continuam válidos e não foram repetidos aqui.)*
+**Riscos desta seção resolvidos em 16/07/2026** (Fase 1.5 e extração validada contra dados reais — ver Seção 16). Três achados de qualidade de dado, não de arquitetura, ficaram registrados na Seção 19a.
+
+*(Riscos da Seção 18 original — tokens de cor do manual desatualizado, página de CLIs inventada, links unidirecionais, domínio atrasando, JS morto de calendário — continuam válidos e não foram repetidos aqui.)*
 
 ---
 
@@ -235,11 +235,18 @@ Os demais itens fora de escopo do planejamento original (autenticação, API de 
 
 ## 19. Checklist de arranque — itens novos
 
-- [ ] Designar um responsável na equipe do CIn para a Fase 1.5 (levantamento das ~45 NTs faltantes) — bloqueante para testar a extração de texto com dados reais.
-- [ ] Testar `pdf-parse` (ou `pdfjs-dist`) contra uma amostra real de PDFs de NT antes de finalizar o pipeline da Seção 10.
-- [ ] Migrar os 5 registros de `cej_site/data/documentos.json` (série `cej-cin`) para `cin_site/data/notas-tecnicas.json`.
-- [ ] Implementar `scripts/importar-notas-tecnicas.js`, `lib/carregar-notas-tecnicas.js`, template de página individual, e o passo `pagefind` no build.
+- [x] ~~Designar um responsável na equipe do CIn para a Fase 1.5~~ — Rodrigo tinha o arquivo completo (73 PDFs), não era um problema de levantamento.
+- [x] ~~Testar `pdf-parse` (ou `pdfjs-dist`) contra uma amostra real~~ — `pdf-parse@1.1.1` testado e adotado contra os 73 documentos reais.
+- [ ] Migrar os 5 registros de `cej_site/data/documentos.json` (série `cej-cin`) — **ainda não feito**: `cin_site/data/notas-tecnicas.json` foi populado direto dos 73 PDFs originais, não a partir do que já existia no `cej_site`. Conferir se os 5 do CEJ são um subconjunto dos 72 daqui (prováveis duplicatas por número de NT) antes do cutover da Seção 15.
+- [x] Implementar `scripts/importar-notas-tecnicas.js`, `lib/carregar-notas-tecnicas.js`, template de página individual, e o passo `pagefind` no build.
 - [ ] Validar a CSP real (`vercel.json`) contra o WASM do Pagefind antes do lançamento.
 - [ ] Decidir com Rodrigo se as 5 entradas migradas são removidas ou mantidas como histórico no `cej_site` (Seção 15).
+
+### 19a. Achados de qualidade de dado (16/07/2026) — revisar antes de considerar o acervo "pronto"
+
+- **`nt-2018-13` não entrou no catálogo.** O arquivo é, na prática, um `.docx` salvo com extensão `.pdf` (assinatura de arquivo confirma "Microsoft Word 2007+", não PDF) — `pdf-parse` rejeita corretamente. Pedir a Rodrigo o arquivo real em PDF.
+- **`nt-2025-59`** tem descrição genérica no catálogo — o assunto aparece depois do bloco de Relatores/Revisores neste documento específico (ordem invertida em relação aos demais), fora do alcance da extração automática atual. Revisão manual do campo `descricao` recomendada.
+- **`nt-2024-45-anexo`** também ficou com descrição genérica — mas é esperado: é um formulário de laudo médico pericial em branco (anexo da NT 45/2024), não um documento com "assunto" próprio.
+- Nenhum nome de relator/revisor foi verificado manualmente — o campo `autor` de cada NT é extração automática do texto, útil para exibição mas não deve ser tratado como fonte oficial sem checagem.
 
 (Checklist original da Seção 20/19 anterior — decisão de domínio, assets, contatos — continua valendo, não repetido aqui.)

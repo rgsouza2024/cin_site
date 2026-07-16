@@ -1,0 +1,56 @@
+---
+layout: layouts/base.njk
+title: Notas Técnicas
+description: Acervo completo e pesquisável das Notas Técnicas do CIn — busca no conteúdo integral, não só no título.
+permalink: /notas-tecnicas/
+---
+{% simboloIcone "solid/file-pdf", "icone-file-pdf" %}
+{% simboloIcone "solid/arrow-up-right-from-square", "icone-externo" %}
+
+    <!-- Cabeçalho da página -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="section-title">Notas Técnicas</h1>
+            <p class="section-subtitle">{{ notasTecnicas.length }} Notas Técnicas do CIn, de {{ notasTecnicas[notasTecnicas.length - 1].ano }} a {{ notasTecnicas[0].ano }} — busca no texto completo, não só no título.</p>
+        </div>
+    </section>
+
+    <!-- Busca em texto integral (Pagefind) -->
+    <section class="acervo-section">
+        <div class="container">
+            <div class="acervo-busca-group">
+                <label for="buscaNts" class="sr-only">Buscar no conteúdo das Notas Técnicas</label>
+                <input type="search" id="buscaNts" placeholder="Buscar no conteúdo completo das Notas Técnicas…" autocomplete="off">
+            </div>
+            <p class="acervo-contagem" id="buscaContagem" aria-live="polite"></p>
+
+            <!-- Resultados da busca (ocultos até haver uma consulta) -->
+            <div class="acervo-grid" id="resultadosBusca" hidden></div>
+
+            <!-- Listagem completa (padrão, some quando há busca ativa) -->
+            <div class="acervo-grid" id="listaCompletaNts">
+                {%- for nt in notasTecnicas %}
+                <article class="documento-card" data-ano="{{ nt.ano }}">
+                    <a href="/notas-tecnicas/{{ nt.id }}/" style="text-decoration:none; color:inherit;">
+                        <div class="documento-corpo">
+                            <span class="documento-capa documento-capa-fallback">{% usarIcone "icone-file-pdf" %}</span>
+                            <div class="documento-info">
+                                <span class="serie-tag">Nota Técnica</span>
+                                <h3 class="documento-titulo">{{ nt.titulo }}</h3>
+                                {%- if nt.autor %}
+                                <p class="documento-autor">{{ nt.autor | truncate(60) }}</p>
+                                {%- endif %}
+                                <p class="documento-descricao">{{ nt.descricao | truncate(140) }}</p>
+                            </div>
+                        </div>
+                        <div class="documento-footer">
+                            <span class="documento-meta"><time datetime="{{ nt.ano }}">{{ nt.ano }}</time> · PDF</span>
+                        </div>
+                    </a>
+                </article>
+                {%- endfor %}
+            </div>
+        </div>
+    </section>
+
+    <script src="/busca-nts.js"></script>

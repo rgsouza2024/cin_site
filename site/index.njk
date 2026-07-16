@@ -91,9 +91,30 @@ description: Portal do CIn - Centro Nacional de Inteligência da Justiça Federa
         </div>
     </section>
 
-    {#- Notas Técnicas em destaque: entra aqui quando a Opção A/B (CIN_PLANEJAMENTO.md
-        Seção 2) for resolvida e houver dados reais para listar — não renderizar
-        cards vazios ou inventados. #}
+    <!-- Notas Técnicas em destaque -->
+    <section class="publications-section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Notas Técnicas em Destaque</h2>
+            <p class="section-subtitle animate-on-scroll">{{ notasTecnicas.length }} Notas Técnicas, pesquisáveis por conteúdo completo</p>
+            <div class="publications-grid">
+                {%- for nt in notasTecnicas | limite(3) %}
+                <div class="publication-card animate-on-scroll">
+                    <div class="publication-header">
+                        <h3>{{ nt.titulo }}</h3>
+                        <p>{{ nt.descricao | truncate(110) }}</p>
+                    </div>
+                    <div class="publication-footer">
+                        <span class="publication-count">{{ nt.ano }}</span>
+                        <a href="/notas-tecnicas/{{ nt.id }}/" class="publication-link">Ler {% icone "solid/arrow-right" %}</a>
+                    </div>
+                </div>
+                {%- endfor %}
+            </div>
+            <div class="section-cta animate-on-scroll">
+                <a href="/notas-tecnicas/" class="cta-button">Buscar em Todas as Notas Técnicas</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contato">

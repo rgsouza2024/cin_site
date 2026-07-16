@@ -1,19 +1,27 @@
 const fs = require("fs");
 const path = require("path");
+const carregarNotasTecnicas = require("./lib/carregar-notas-tecnicas.js");
 
 module.exports = function (eleventyConfig) {
     // Dados de domínio vivem em /data na raiz — mesmo padrão do cej_site.
-    // Carregador dedicado às Notas Técnicas (federado ou local) entra aqui
-    // quando a origem dos dados for decidida — ver CIN_PLANEJAMENTO.md, Seção 2.
+    // Exceção: notas-tecnicas.json passa pelo carregador dedicado (valida +
+    // injeta o texto extraído do cache); notas-tecnicas-texto.json é só cache
+    // interno, não precisa virar variável global.
     const dataDir = path.join(__dirname, "data");
     for (const file of fs.readdirSync(dataDir)) {
-        if (file.endsWith(".json")) {
+        if (
+            file.endsWith(".json") &&
+            file !== "notas-tecnicas.json" &&
+            file !== "notas-tecnicas-texto.json"
+        ) {
             const name = path.basename(file, ".json");
             eleventyConfig.addGlobalData(name, () =>
                 JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8"))
             );
         }
     }
+
+    eleventyConfig.addGlobalData("notasTecnicas", carregarNotasTecnicas);
 
     // Texto normalizado para busca client-side (espelha site/acervo.js)
     eleventyConfig.addFilter("normalizarBusca", (texto) =>
@@ -33,6 +41,18 @@ module.exports = function (eleventyConfig) {
     );
 
     eleventyConfig.addShortcode("anoAtual", () => String(new Date().getFullYear()));
+
+    // Texto bruto extraído do PDF (pdf-parse) em parágrafos legíveis —
+    // aproximação por linhas em branco, sem reconstrução tipográfica perfeita
+    // de tabelas/colunas (ver CIN_PLANEJAMENTO.md, Seção 17, riscos).
+    eleventyConfig.addFilter("limite", (lista, n) => lista.slice(0, n));
+
+    eleventyConfig.addFilter("paragrafos", (texto) =>
+        (texto || "")
+            .split(/\n\s*\n+/)
+            .map((p) => p.replace(/[ \t]+/g, " ").replace(/\s*\n\s*/g, " ").trim())
+            .filter((p) => p.length > 0)
+    );
 
     // Sprite SVG para ícones repetidos em massa
     eleventyConfig.addShortcode("simboloIcone", (nome, id) => {
@@ -75,6 +95,7 @@ module.exports = function (eleventyConfig) {
         "site/script.js": "script.js",
         "site/menu.js": "menu.js",
         "site/acervo.js": "acervo.js",
+        "site/busca-nts.js": "busca-nts.js",
         "site/cin_logo.webp": "cin_logo.webp",
         "site/cjf_logo.png": "cjf_logo.png",
         "site/favicon.png": "favicon.png",

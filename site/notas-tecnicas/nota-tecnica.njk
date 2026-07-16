@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+pagination:
+    data: notasTecnicas
+    size: 1
+    alias: nt
+permalink: "/notas-tecnicas/{{ nt.id }}/"
+eleventyComputed:
+    title: "{{ nt.titulo }} - CIn"
+    description: "{{ nt.descricao }}"
+---
+    <!-- Cabeçalho da página -->
+    <section class="page-header">
+        <div class="container">
+            <p class="acervo-nota"><a href="/notas-tecnicas/">{% icone "solid/arrow-left" %} Notas Técnicas</a></p>
+            <h1 class="section-title" style="text-align:left; margin-bottom:10px;">{{ nt.titulo }}</h1>
+            <p class="section-subtitle" style="text-align:left; margin:0 0 10px;">{{ nt.descricao }}</p>
+            <p class="documento-meta">
+                {%- if nt.autor %}{{ nt.autor }} · {% endif -%}
+                <time datetime="{{ nt.ano }}">{{ nt.ano }}</time>
+            </p>
+        </div>
+    </section>
+
+    <section class="acervo-section">
+        <div class="container">
+            <div class="institutional-grid">
+                <div class="about-main-content">
+                    {%- for paragrafo in nt.texto | paragrafos %}
+                    <p>{{ paragrafo }}</p>
+                    {%- endfor %}
+                </div>
+                <div class="about-sidebar">
+                    <h3>Sobre este documento</h3>
+                    <p>Série: Notas Técnicas do CIn</p>
+                    {%- if nt.autor %}<p>{{ nt.autor }}</p>{%- endif %}
+                    <p><time datetime="{{ nt.ano }}">{{ nt.ano }}</time></p>
+                    <a class="cta-button" href="{{ nt.url }}" target="_blank" rel="noopener noreferrer">{% icone "solid/file-arrow-down" %} Baixar PDF original</a>
+                </div>
+            </div>
+        </div>
+    </section>

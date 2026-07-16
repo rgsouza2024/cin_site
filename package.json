@@ -4,8 +4,10 @@
     "description": "Site institucional do CIn - Centro Nacional de Inteligência da Justiça Federal (spin-off do cej_site)",
     "private": true,
     "scripts": {
-        "build": "eleventy",
+        "build": "eleventy && pagefind --site _site",
         "start": "eleventy --serve",
+        "validar": "node lib/carregar-notas-tecnicas.js",
+        "importar-notas-tecnicas": "node scripts/importar-notas-tecnicas.js",
         "verificar-links": "node scripts/verificar-links.js"
     },
     "repository": {
@@ -18,6 +20,8 @@
         "@11ty/eleventy": "^3.1.6",
         "@fortawesome/fontawesome-free": "^7.3.0",
         "ajv": "^8.20.0",
+        "pagefind": "^1.5.2",
+        "pdf-parse": "^1.1.1",
         "sharp": "^0.35.3"
     }
 }
