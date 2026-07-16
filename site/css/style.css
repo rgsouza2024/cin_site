@@ -155,7 +155,7 @@ header {
 }
 
 .logo img {
-    height: 54px;
+    height: 75px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -1241,7 +1241,7 @@ nav {
 .busca-nts-linha {
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: stretch;
     max-width: 760px;
     margin: 0 auto 8px;
 }
@@ -1258,15 +1258,21 @@ nav {
 
 .notas-filtro-ano {
     height: 100%;
-    padding: 0 16px;
+    padding: 18px 40px 18px 20px;
     font-size: 16px;
     font-family: inherit;
     color: var(--text-dark);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-btn);
     background-color: var(--white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2397999F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 14px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1278,6 +1284,7 @@ nav {
     outline: none;
     border-color: var(--jf-blue);
     box-shadow: 0 0 0 3px rgba(0, 47, 108, 0.12), 0 4px 15px rgba(0, 0, 0, 0.08);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23002F6C' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
 }
 
 @media (max-width: 600px) {
@@ -1291,13 +1298,13 @@ nav {
 
     .notas-filtro-ano {
         width: 100%;
-        padding: 14px 16px;
+        padding: 18px 40px 18px 20px;
     }
 }
 
 .busca-nts-input {
     width: 100%;
-    padding: 16px 48px;
+    padding: 19px 52px;
     font-size: 16px; /* >=16px evita zoom automático de foco no iOS */
     font-family: inherit;
     color: var(--text-dark);
@@ -1328,7 +1335,7 @@ nav {
 
 .busca-nts-icone {
     position: absolute;
-    left: 16px;
+    left: 18px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--jf-gray);
@@ -1341,7 +1348,7 @@ nav {
 
 .busca-nts-limpar {
     position: absolute;
-    right: 8px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     width: 32px;
@@ -1385,7 +1392,7 @@ nav {
 
 @media (max-width: 480px) {
     .busca-nts-input {
-        padding: 14px 42px;
+        padding: 16px 46px;
     }
 }
 
@@ -1706,7 +1713,7 @@ footer {
     }
 
     .logo img {
-        height: 50px;
+        height: 75px;
     }
 
     .header-right img {

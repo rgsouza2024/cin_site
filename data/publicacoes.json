@@ -1,0 +1,52 @@
+[
+    {
+        "id": "publicacoes/serie-cej-cnijf-vol-1",
+        "serie": "publicacoes",
+        "titulo": "Estratégias de prevenção de conflitos, monitoramento e gestão de demandas e precedentes — Volume 1",
+        "descricao": "Série CEJ. Notas técnicas e ações do Centro Nacional de Inteligência da Justiça Federal.",
+        "autor": null,
+        "ano": 2018,
+        "url": "/assets/publicacoes/serie-cej-cnijf-vol-1.pdf",
+        "capa": "/assets/publicacoes/capa-serie-cej-cnijf-vol-1.webp"
+    },
+    {
+        "id": "publicacoes/serie-cej-cnijf-vol-2",
+        "serie": "publicacoes",
+        "titulo": "Estratégias de prevenção de conflitos, monitoramento e gestão de demandas e precedentes — Volume 2",
+        "descricao": "Série CEJ. Notas técnicas e ações do Centro Nacional de Inteligência da Justiça Federal.",
+        "autor": null,
+        "ano": 2019,
+        "url": "/assets/publicacoes/serie-cej-cnijf-vol-2.pdf",
+        "capa": "/assets/publicacoes/capa-serie-cej-cnijf-vol-2.webp"
+    },
+    {
+        "id": "publicacoes/serie-cej-cnijf-vol-3",
+        "serie": "publicacoes",
+        "titulo": "Estratégias de prevenção de conflitos, monitoramento e gestão de demandas e precedentes — Volume 3",
+        "descricao": "Série CEJ. Notas técnicas e ações do Centro Nacional de Inteligência da Justiça Federal.",
+        "autor": null,
+        "ano": 2025,
+        "url": "/assets/publicacoes/serie-cej-cnijf-vol-3.pdf",
+        "capa": "/assets/publicacoes/capa-serie-cej-cnijf-vol-3.webp"
+    },
+    {
+        "id": "publicacoes/manual-teleaudiencias",
+        "serie": "publicacoes",
+        "titulo": "Manual de Teleaudiências",
+        "descricao": "Orientações para a realização de audiências por videoconferência na Justiça Federal, produzidas a partir de nota técnica conjunta dos Centros Locais de Inteligência do Rio Grande do Norte e de São Paulo.",
+        "autor": null,
+        "ano": 2020,
+        "url": "/assets/publicacoes/manual-teleaudiencias.pdf",
+        "capa": "/assets/publicacoes/capa-manual-teleaudiencias.webp"
+    },
+    {
+        "id": "publicacoes/edicao-especial-pandemia",
+        "serie": "publicacoes",
+        "titulo": "Atuação em rede dos Centros de Inteligência da Justiça Federal durante a pandemia",
+        "descricao": "Edição especial: uma forma de institucionalização do sistema multiportas no direito brasileiro.",
+        "autor": null,
+        "ano": 2020,
+        "url": "/assets/publicacoes/edicao-especial-pandemia.pdf",
+        "capa": "/assets/publicacoes/capa-edicao-especial-pandemia.webp"
+    }
+]

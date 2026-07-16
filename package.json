@@ -6,7 +6,7 @@
     "scripts": {
         "build": "eleventy && pagefind --site _site",
         "start": "eleventy --serve",
-        "validar": "node lib/carregar-notas-tecnicas.js",
+        "validar": "node lib/carregar-notas-tecnicas.js && node lib/carregar-publicacoes.js",
         "importar-notas-tecnicas": "node scripts/importar-notas-tecnicas.js",
         "verificar-links": "node scripts/verificar-links.js"
     },

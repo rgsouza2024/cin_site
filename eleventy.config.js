@@ -1,18 +1,20 @@
 const fs = require("fs");
 const path = require("path");
 const carregarNotasTecnicas = require("./lib/carregar-notas-tecnicas.js");
+const carregarPublicacoes = require("./lib/carregar-publicacoes.js");
 
 module.exports = function (eleventyConfig) {
     // Dados de domínio vivem em /data na raiz — mesmo padrão do cej_site.
-    // Exceção: notas-tecnicas.json passa pelo carregador dedicado (valida +
-    // injeta o texto extraído do cache); notas-tecnicas-texto.json é só cache
-    // interno, não precisa virar variável global.
+    // Exceção: notas-tecnicas.json e publicacoes.json passam por carregadores
+    // dedicados (valida contra o contrato); notas-tecnicas-texto.json é só
+    // cache interno, não precisa virar variável global.
     const dataDir = path.join(__dirname, "data");
     for (const file of fs.readdirSync(dataDir)) {
         if (
             file.endsWith(".json") &&
             file !== "notas-tecnicas.json" &&
-            file !== "notas-tecnicas-texto.json"
+            file !== "notas-tecnicas-texto.json" &&
+            file !== "publicacoes.json"
         ) {
             const name = path.basename(file, ".json");
             eleventyConfig.addGlobalData(name, () =>
@@ -22,6 +24,7 @@ module.exports = function (eleventyConfig) {
     }
 
     eleventyConfig.addGlobalData("notasTecnicas", carregarNotasTecnicas);
+    eleventyConfig.addGlobalData("publicacoes", carregarPublicacoes);
 
     // Texto normalizado para busca client-side (espelha site/acervo.js)
     eleventyConfig.addFilter("normalizarBusca", (texto) =>

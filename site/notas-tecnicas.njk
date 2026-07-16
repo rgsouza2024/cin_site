@@ -11,9 +11,12 @@ permalink: /notas-tecnicas/
 
     <!-- Cabeçalho da página -->
     <section class="page-header">
-        <div class="container">
-            <h1 class="section-title">Notas Técnicas</h1>
-            <p class="section-subtitle">Todas as {{ notasTecnicas.length }} Notas Técnicas do CIn desde {{ notasTecnicas[notasTecnicas.length - 1].ano }}, num só lugar. Pesquise por título, número, autor ou pelo conteúdo completo de cada documento.</p>
+        <div class="container page-header-grid">
+            <div class="page-header-texto">
+                <h1 class="section-title">Notas Técnicas</h1>
+                <p class="section-subtitle">Todas as {{ notasTecnicas.length }} Notas Técnicas do CIn desde {{ notasTecnicas[notasTecnicas.length - 1].ano }}, num só lugar. Pesquise por título, número, autor ou pelo conteúdo completo de cada documento.</p>
+            </div>
+            <img class="img-card page-header-arte" src="/assets/cin-arte-04.webp" alt="" width="900" height="600" decoding="async">
         </div>
     </section>
 

@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+title: Publicações
+description: Publicações institucionais do CIn — coletâneas de Notas Técnicas, manuais e edições especiais do Centro Nacional de Inteligência da Justiça Federal, disponíveis para download em PDF.
+permalink: /publicacoes/
+---
+    <!-- Cabeçalho da página -->
+    <section class="page-header">
+        <div class="container page-header-grid">
+            <div class="page-header-texto">
+                <h1 class="section-title">Publicações</h1>
+                <p class="section-subtitle">Coletâneas, manuais e edições especiais produzidos pelo CIn — cada publicação disponível para download completo em PDF.</p>
+            </div>
+            <img class="img-card page-header-arte" src="/assets/cin-arte-04.webp" alt="" width="900" height="600" decoding="async">
+        </div>
+    </section>
+
+    <section class="acervo-section">
+        <div class="container">
+            <div class="acervo-grid">
+                {%- for pub in publicacoes %}
+                <article class="documento-card">
+                    <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
+                        <div class="documento-corpo">
+                            {%- if pub.capa %}
+                            <img class="documento-capa" src="{{ pub.capa }}" alt="" width="600" height="816" loading="lazy" decoding="async">
+                            {%- else %}
+                            <span class="documento-capa documento-capa-fallback">{% icone "solid/file-pdf" %}</span>
+                            {%- endif %}
+                            <div class="documento-info">
+                                <span class="serie-tag">Publicação</span>
+                                <h3 class="documento-titulo">{{ pub.titulo }}</h3>
+                                <p class="documento-descricao">{{ pub.descricao }}</p>
+                            </div>
+                        </div>
+                        <div class="documento-footer">
+                            <span class="documento-meta"><time datetime="{{ pub.ano }}">{{ pub.ano }}</time> · PDF</span>
+                            <span class="documento-meta">Baixar {% icone "solid/arrow-up-right-from-square", "nav-external-icon" %}</span>
+                        </div>
+                    </a>
+                </article>
+                {%- endfor %}
+            </div>
+        </div>
+    </section>
