@@ -7,6 +7,8 @@ async function initBuscaNts() {
     const input = document.getElementById('buscaNts');
     if (!input) return;
 
+    const wrapEl = document.getElementById('buscaNtsWrap');
+    const limparBtn = document.getElementById('buscaNtsLimpar');
     const resultadosEl = document.getElementById('resultadosBusca');
     const listaEl = document.getElementById('listaCompletaNts');
     const contagemEl = document.getElementById('buscaContagem');
@@ -26,14 +28,24 @@ async function initBuscaNts() {
         if (contagemEl) contagemEl.textContent = '';
     }
 
+    function atualizarBotaoLimpar() {
+        limparBtn.hidden = input.value.length === 0;
+    }
+
     async function buscar(termo) {
         if (!termo) {
             mostrarLista();
+            wrapEl.classList.remove('buscando');
             return;
         }
         const busca = await pagefind.search(termo);
         const resultados = await Promise.all(busca.results.slice(0, 30).map((r) => r.data()));
 
+        // Só troca a tela se o termo ainda for o que está no campo — evita
+        // uma resposta lenta e antiga sobrescrever uma busca mais recente.
+        if (input.value.trim() !== termo) return;
+
+        wrapEl.classList.remove('buscando');
         listaEl.hidden = true;
         resultadosEl.hidden = false;
         if (contagemEl) {
@@ -62,8 +74,19 @@ async function initBuscaNts() {
 
     let temporizador;
     input.addEventListener('input', () => {
+        atualizarBotaoLimpar();
         clearTimeout(temporizador);
-        temporizador = setTimeout(() => buscar(input.value.trim()), 250);
+        const termo = input.value.trim();
+        if (termo) wrapEl.classList.add('buscando');
+        temporizador = setTimeout(() => buscar(termo), 250);
+    });
+
+    limparBtn.addEventListener('click', () => {
+        input.value = '';
+        atualizarBotaoLimpar();
+        wrapEl.classList.remove('buscando');
+        mostrarLista();
+        input.focus();
     });
 }
 

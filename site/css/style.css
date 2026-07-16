@@ -1234,19 +1234,108 @@ nav {
     background-color: var(--white);
 }
 
-.acervo-busca-group input[type="search"] {
-    padding: 10px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-btn);
-    font-size: 14px;
-    font-family: inherit;
-    background-color: var(--white);
-    min-width: 260px;
-    transition: border-color 0.3s ease;
+/* ============================================
+   BUSCA DE NOTAS TÉCNICAS (/notas-tecnicas/) — texto integral via Pagefind
+   ============================================ */
+
+.busca-nts-wrap {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto 8px;
 }
 
-.acervo-busca-group input[type="search"]:focus {
+.busca-nts-input {
+    width: 100%;
+    padding: 16px 48px;
+    font-size: 16px; /* >=16px evita zoom automático de foco no iOS */
+    font-family: inherit;
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-btn);
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Substituído pelo botão de limpar próprio (.busca-nts-limpar) — consistente
+   entre navegadores, o "x" nativo do type=search só existe no Chromium. */
+.busca-nts-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.busca-nts-input:hover {
+    border-color: var(--jf-gray);
+}
+
+.busca-nts-input:focus {
+    outline: none;
     border-color: var(--jf-blue);
+    box-shadow: 0 0 0 3px rgba(0, 47, 108, 0.12), 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.busca-nts-icone {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--jf-gray);
+    transition: color 0.2s ease;
+}
+
+.busca-nts-wrap:focus-within .busca-nts-icone {
+    color: var(--jf-blue);
+}
+
+.busca-nts-limpar {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.busca-nts-limpar:hover {
+    background-color: var(--light-bg);
+    color: var(--jf-blue);
+}
+
+.busca-nts-limpar .svg-icon {
+    font-size: 13px;
+}
+
+/* Estado "buscando": a lupa pulsa em vez de travar — status do sistema
+   visível (Heurística de Nielsen #1) enquanto o debounce/busca resolvem. */
+.busca-nts-wrap.buscando .busca-nts-icone {
+    animation: buscaNtsPulso 1s ease-in-out infinite;
+}
+
+@keyframes buscaNtsPulso {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .busca-nts-wrap.buscando .busca-nts-icone {
+        animation: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .busca-nts-input {
+        padding: 14px 42px;
+    }
 }
 
 .acervo-contagem {
@@ -1425,12 +1514,6 @@ nav {
     border: 0;
 }
 
-@media (max-width: 768px) {
-    .acervo-busca-group input[type="search"] {
-        width: 100%;
-        min-width: 0;
-    }
-}
 
 /* ============================================
    CONTACT SECTION

@@ -6,6 +6,8 @@ permalink: /notas-tecnicas/
 ---
 {% simboloIcone "solid/file-pdf", "icone-file-pdf" %}
 {% simboloIcone "solid/arrow-up-right-from-square", "icone-externo" %}
+{% simboloIcone "solid/magnifying-glass", "icone-busca" %}
+{% simboloIcone "solid/xmark", "icone-limpar" %}
 
     <!-- Cabeçalho da página -->
     <section class="page-header">
@@ -18,9 +20,11 @@ permalink: /notas-tecnicas/
     <!-- Busca em texto integral (Pagefind) -->
     <section class="acervo-section">
         <div class="container">
-            <div class="acervo-busca-group">
+            <div class="busca-nts-wrap" id="buscaNtsWrap">
                 <label for="buscaNts" class="sr-only">Buscar no conteúdo das Notas Técnicas</label>
-                <input type="search" id="buscaNts" placeholder="Buscar no conteúdo completo das Notas Técnicas…" autocomplete="off">
+                <span class="busca-nts-icone">{% usarIcone "icone-busca" %}</span>
+                <input type="search" id="buscaNts" class="busca-nts-input" placeholder="Buscar no conteúdo completo das Notas Técnicas…" autocomplete="off">
+                <button type="button" id="buscaNtsLimpar" class="busca-nts-limpar" hidden aria-label="Limpar busca">{% usarIcone "icone-limpar" %}</button>
             </div>
             <p class="acervo-contagem" id="buscaContagem" aria-live="polite"></p>
 
