@@ -229,7 +229,7 @@ Além do que a Seção 14 original do planejamento já listava (trocar `/#cin` p
 
 Confirmando explicitamente o que a Seção 10 já argumenta: **motor de busca com backend está fora de escopo enquanto o corpus for da ordem de grandeza projetada (dezenas a ~100 documentos até 2036).** Se esse número mudar por uma ordem de grandeza (ex.: o CIn passar a publicar milhares de documentos, ou incorporar acervo de outras fontes), essa decisão precisa ser revisitada — não é uma proibição permanente, é uma decisão calibrada para o volume real informado.
 
-Os demais itens fora de escopo do planejamento original (autenticação, API de escrita entre CEJ e CIn, agenda de eventos própria) continuam adiados pelos mesmos motivos.
+Os demais itens fora de escopo do planejamento original (autenticação, API de escrita entre CEJ e CIn, agenda de eventos própria) continuam adiados pelo mesmo motivo. **Busca avançada com operadores estilo SCON/STJ** (Seção 20) é mais um item nessa lista — mesmo gatilho de revisão.
 
 ---
 
@@ -250,3 +250,43 @@ Os demais itens fora de escopo do planejamento original (autenticação, API de 
 - Nenhum nome de relator/revisor foi verificado manualmente — o campo `autor` de cada NT é extração automática do texto, útil para exibição mas não deve ser tratado como fonte oficial sem checagem.
 
 (Checklist original da Seção 20/19 anterior — decisão de domínio, assets, contatos — continua valendo, não repetido aqui.)
+
+---
+
+## 20. Busca avançada estilo SCON/STJ (condicional — não iniciada)
+
+Discutido com Rodrigo em 16/07/2026, a partir de `scon.stj.jus.br/SCON/`, que usa operadores booleanos/proximidade (`e`, `ou`, `não`, `adj`, `prox`, `mesmo`, `com`, `$`) na pesquisa de jurisprudência.
+
+### Por que não agora
+
+Esses operadores existem para resolver um problema de **precisão numa base de centenas de milhares de documentos** — sem eles, uma busca simples retorna ruído demais. O acervo de NTs tem 72-100 documentos: uma busca simples (Pagefind, já em produção) já retorna 1-3 resultados relevantes para a maioria das consultas, sem precisar de precisão cirúrgica. Construir isso agora resolveria um problema de escala que este corpus não tem.
+
+### O que verifiquei sobre o Pagefind
+
+Consultei a documentação oficial (`pagefind.app/docs`) e o README do projeto — nenhum dos dois documenta suporte a booleanos (`AND`/`OR`/`NOT`), frase exata, exclusão de termo ou proximidade. Consistente com o que o Pagefind se propõe a ser: busca ranqueada e tolerante a erro de digitação para sites estáticos, não uma linguagem de consulta como a do SCON. **Não é algo que se ativa por configuração — o motor não foi desenhado para isso.**
+
+### Como seria, sem abrir mão de site estático
+
+A única forma de ter operadores reais mantendo a arquitetura 100% estática (sem servidor) é trocar o motor de busca desta funcionalidade específica: compilar um banco **SQLite com índice FTS5** a partir do mesmo texto já extraído em `data/notas-tecnicas-texto.json`, e consultar **no navegador** via WASM (`sql.js` ou `wa-sqlite`) — o `.sqlite` vira mais um asset estático, sem API própria. FTS5 mapeia quase 1:1 com o SCON:
+
+| SCON | FTS5 |
+|---|---|
+| `e` | `AND` (ou espaço — é o padrão implícito) |
+| `ou` | `OR` |
+| `não` | `NOT` |
+| `adj` | frase exata `"termo1 termo2"` ou `NEAR(termo1 termo2, 0)` |
+| `prox` | `NEAR(termo1 termo2, N)` |
+| `$` (radical) | `termo*` (prefixo) |
+| `mesmo` / `com` | sem equivalente direto no FTS5 — exigiria lógica própria por parágrafo |
+
+### Custo estimado
+
+Comparável ou maior que a Seção 10 inteira (a busca que já está em produção): novo passo de build (gerar o `.sqlite`+FTS5), um segundo runtime WASM no navegador ao lado do do Pagefind, um parser traduzindo a sintaxe do usuário (`"processo adj civil"`) para `MATCH` do FTS5, UI de resultados própria, e realce de trecho (`highlighting`) construído do zero — o Pagefind já entrega isso pronto, o FTS5 não.
+
+### Gatilho de revisão
+
+Mesmo gatilho já registrado na Seção 18 para motor de busca com backend: corpus crescer uma ordem de grandeza (centenas a milhares de documentos), ou evidência real de que a precisão do Pagefind é insuficiente na prática — não uma hipótese, um caso concreto de busca que devolve ruído demais.
+
+### Se e quando for construído
+
+Seguir o próprio padrão do SCON: busca simples continua o padrão para todo mundo; operadores entram como **modo avançado opcional**, escondido atrás de um toggle (é literalmente o que o "Ocultar operadores" da interface do STJ já faz — nem o STJ força isso no usuário casual).
