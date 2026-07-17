@@ -1469,6 +1469,36 @@ nav {
     color: var(--text-light);
 }
 
+/* Episódios de podcast têm dois destinos (Spotify/YouTube) — não dá pra
+   embrulhar o card inteiro num único link como nas NTs/Publicações */
+.documento-links {
+    display: flex;
+    gap: 8px;
+}
+
+.documento-link-plataforma {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--border-color);
+    color: var(--jf-blue);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.documento-link-plataforma:hover {
+    border-color: var(--jf-blue);
+    background-color: var(--light-bg);
+}
+
+.documento-link-plataforma .svg-icon {
+    font-size: 13px;
+}
+
 /* ============================================
    REDE DE INTELIGÊNCIA (/rede/) — tabela de CLIs
    ============================================ */

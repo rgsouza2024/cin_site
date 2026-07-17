@@ -2,19 +2,21 @@ const fs = require("fs");
 const path = require("path");
 const carregarNotasTecnicas = require("./lib/carregar-notas-tecnicas.js");
 const carregarPublicacoes = require("./lib/carregar-publicacoes.js");
+const carregarPodcast = require("./lib/carregar-podcast.js");
 
 module.exports = function (eleventyConfig) {
     // Dados de domínio vivem em /data na raiz — mesmo padrão do cej_site.
-    // Exceção: notas-tecnicas.json e publicacoes.json passam por carregadores
-    // dedicados (valida contra o contrato); notas-tecnicas-texto.json é só
-    // cache interno, não precisa virar variável global.
+    // Exceção: notas-tecnicas.json, publicacoes.json e podcast.json passam
+    // por carregadores dedicados (valida contra o contrato); notas-tecnicas-
+    // texto.json é só cache interno, não precisa virar variável global.
     const dataDir = path.join(__dirname, "data");
     for (const file of fs.readdirSync(dataDir)) {
         if (
             file.endsWith(".json") &&
             file !== "notas-tecnicas.json" &&
             file !== "notas-tecnicas-texto.json" &&
-            file !== "publicacoes.json"
+            file !== "publicacoes.json" &&
+            file !== "podcast.json"
         ) {
             const name = path.basename(file, ".json");
             eleventyConfig.addGlobalData(name, () =>
@@ -25,6 +27,7 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.addGlobalData("notasTecnicas", carregarNotasTecnicas);
     eleventyConfig.addGlobalData("publicacoes", carregarPublicacoes);
+    eleventyConfig.addGlobalData("podcastEpisodios", carregarPodcast);
 
     // Texto normalizado para busca client-side (espelha site/acervo.js)
     eleventyConfig.addFilter("normalizarBusca", (texto) =>
@@ -53,6 +56,16 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addFilter("anosUnicos", (lista) =>
         [...new Set(lista.map((item) => item.ano))].sort((a, b) => b - a)
     );
+
+    eleventyConfig.addFilter("porId", (lista, id) => lista.find((item) => item.id === id));
+
+    const MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
+        "agosto", "setembro", "outubro", "novembro", "dezembro"];
+    eleventyConfig.addFilter("dataBr", (isoData) => {
+        const [ano, mes, dia] = (isoData || "").split("-").map(Number);
+        if (!ano || !mes || !dia) return isoData;
+        return `${dia} de ${MESES[mes - 1]} de ${ano}`;
+    });
 
     eleventyConfig.addFilter("paragrafos", (texto) =>
         (texto || "")
@@ -103,6 +116,7 @@ module.exports = function (eleventyConfig) {
         "site/menu.js": "menu.js",
         "site/acervo.js": "acervo.js",
         "site/busca-nts.js": "busca-nts.js",
+        "site/busca-podcast.js": "busca-podcast.js",
         "site/cin_logo.webp": "cin_logo.webp",
         "site/cjf_logo.png": "cjf_logo.png",
         "site/favicon.png": "favicon.png",

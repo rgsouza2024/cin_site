@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+title: Notas Técnicas em Podcast
+description: Episódios do Notas Técnicas em Podcast, iniciativa do CIn em parceria com a ASCOM/CJF — cada episódio comenta uma Nota Técnica aprovada pelo Centro.
+permalink: /podcast/
+---
+{% simboloIcone "solid/podcast", "icone-podcast" %}
+{% simboloIcone "brands/spotify", "icone-spotify" %}
+{% simboloIcone "brands/youtube", "icone-youtube" %}
+{% simboloIcone "solid/magnifying-glass", "icone-busca" %}
+{% simboloIcone "solid/xmark", "icone-limpar" %}
+
+    <!-- Cabeçalho da página -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="section-title">Notas Técnicas em Podcast</h1>
+            <p class="section-subtitle">Iniciativa do CIn em parceria com a ASCOM/CJF para ampliar a visibilidade das Notas Técnicas aprovadas pelo Centro. Cada episódio comenta uma nota em linguagem acessível, com participação de quem a elaborou. Ouça no Spotify ou assista no YouTube.</p>
+        </div>
+    </section>
+
+    <!-- Busca — filtra os cards já renderizados (título, resumo, NT relacionada);
+         não há texto de áudio para buscar, então não usa o Pagefind. -->
+    <section class="acervo-section">
+        <div class="container">
+            <div class="busca-nts-linha">
+                <div class="busca-nts-wrap" id="buscaPodcastWrap">
+                    <label for="buscaPodcast" class="sr-only">Buscar nos episódios do podcast</label>
+                    <span class="busca-nts-icone">{% usarIcone "icone-busca" %}</span>
+                    <input type="search" id="buscaPodcast" class="busca-nts-input" placeholder="Buscar por título, tema ou Nota Técnica…" autocomplete="off">
+                    <button type="button" id="buscaPodcastLimpar" class="busca-nts-limpar" hidden aria-label="Limpar busca">{% usarIcone "icone-limpar" %}</button>
+                </div>
+            </div>
+            <p class="acervo-contagem" id="buscaPodcastContagem" aria-live="polite"></p>
+
+            <div class="acervo-grid" id="listaPodcast">
+                {%- for ep in podcastEpisodios %}
+                {%- set nt = notasTecnicas | porId(ep.notaRelacionada) %}
+                <article class="documento-card">
+                    <div class="documento-corpo">
+                        <span class="documento-capa documento-capa-fallback">{% usarIcone "icone-podcast" %}</span>
+                        <div class="documento-info">
+                            <span class="serie-tag">Podcast</span>
+                            <h2 class="documento-titulo">{{ ep.titulo }}</h2>
+                            {%- if nt %}
+                            <p class="documento-autor"><a href="/notas-tecnicas/{{ nt.id }}/">{{ nt.titulo }}</a></p>
+                            {%- endif %}
+                            <p class="documento-descricao">{{ ep.resumo }}</p>
+                        </div>
+                    </div>
+                    <div class="documento-footer">
+                        <span class="documento-meta"><time datetime="{{ ep.data }}">{{ ep.data | dataBr }}</time></span>
+                        <span class="documento-links">
+                            <a href="{{ ep.spotify }}" target="_blank" rel="noopener noreferrer" class="documento-link-plataforma" aria-label="Ouvir no Spotify">{% usarIcone "icone-spotify" %} Spotify</a>
+                            <a href="{{ ep.youtube }}" target="_blank" rel="noopener noreferrer" class="documento-link-plataforma" aria-label="Assistir no YouTube">{% usarIcone "icone-youtube" %} YouTube</a>
+                        </span>
+                    </div>
+                </article>
+                {%- endfor %}
+            </div>
+        </div>
+    </section>
+
+    <script src="/busca-podcast.js"></script>
