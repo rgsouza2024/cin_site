@@ -7,7 +7,7 @@
     /* Cores Oficiais da Justiça Federal (Manual) */
     --jf-blue: #002F6C;
     --jf-green: #007A33;
-    --jf-gray: #97999F;
+    --jf-gray: #97999F; /* 2,85:1 sobre branco — abaixo do mínimo AA (4.5:1 texto, 3:1 texto grande). Usar só em ícones/bordas, nunca em texto. */
 
     /* Derivadas das cores oficiais */
     --jf-blue-light: #003d8a;
@@ -419,49 +419,6 @@ nav {
     font-size: 15px;
     line-height: 1.7;
     color: var(--text-light);
-}
-
-/* ============================================
-   ACESSO RÁPIDO (atalhos de tarefa sob o hero)
-   ============================================ */
-
-.acesso-rapido-section {
-    padding: 40px 20px;
-    background-color: var(--light-bg);
-}
-
-.acesso-rapido-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 20px;
-}
-
-.acesso-rapido-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 24px 12px;
-    background-color: var(--white);
-    border-radius: var(--radius-card);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-top: 4px solid var(--jf-green);
-    text-decoration: none;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--jf-blue);
-    transition: box-shadow 0.3s ease;
-}
-
-.acesso-rapido-item:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.acesso-rapido-icone {
-    font-size: 28px;
 }
 
 /* ============================================
@@ -1280,7 +1237,7 @@ nav {
     border-color: var(--jf-gray);
 }
 
-.notas-filtro-ano:focus {
+.notas-filtro-ano:focus-visible {
     outline: none;
     border-color: var(--jf-blue);
     box-shadow: 0 0 0 3px rgba(0, 47, 108, 0.12), 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -1327,7 +1284,7 @@ nav {
     border-color: var(--jf-gray);
 }
 
-.busca-nts-input:focus {
+.busca-nts-input:focus-visible {
     outline: none;
     border-color: var(--jf-blue);
     box-shadow: 0 0 0 3px rgba(0, 47, 108, 0.12), 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -1418,22 +1375,23 @@ nav {
     display: none;
 }
 
-/* Card de documento: mesmo vocabulário visual do card de evento */
+/* Card de documento: mesmo vocabulário visual dos demais cards do site
+   (feature-card, structure-card, publication-card) — sombra, borda superior
+   e comportamento de hover unificados (auditoria UX/UI, achado #1) */
 .documento-card {
     background-color: var(--white);
-    border: 1px solid var(--border-color);
     border-radius: var(--radius-card);
     padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--jf-green);
 }
 
 .documento-card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .documento-card[hidden] {

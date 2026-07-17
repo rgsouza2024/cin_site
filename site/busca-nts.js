@@ -111,7 +111,7 @@ async function initBuscaNts() {
                         <div class="documento-corpo">
                             <span class="documento-capa documento-capa-fallback">${'<svg class="svg-icon" aria-hidden="true"><use href="#icone-file-pdf"></use></svg>'}</span>
                             <div class="documento-info">
-                                <h3 class="documento-titulo">${r.meta.title || r.url}</h3>
+                                <h2 class="documento-titulo">${r.meta.title || r.url}</h2>
                                 <p class="documento-descricao">${r.excerpt}</p>
                             </div>
                         </div>
