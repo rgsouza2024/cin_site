@@ -155,7 +155,7 @@ header {
 }
 
 .logo img {
-    height: 75px;
+    height: 145px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -1709,7 +1709,7 @@ footer {
     }
 
     .logo img {
-        height: 75px;
+        height: 145px;
     }
 
     .header-right img {
