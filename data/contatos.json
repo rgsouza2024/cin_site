@@ -1,20 +1,20 @@
 {
-    "_aviso": "PLACEHOLDER — valores fictícios só para o build não quebrar. Substituir por dados reais do CIn/ASCIn antes do lançamento (CIN_PLANEJAMENTO.md, checklist bloqueante).",
-    "email": "EMAIL_A_DEFINIR@cjf.jus.br",
+    "email": "sce@cjf.jus.br",
     "telefone": {
-        "display": "(61) 0000-0000",
-        "href": "+5561000000000"
+        "display": "(61) 3022-7000",
+        "href": "+556130227000"
     },
     "canais": [
-        { "assunto": "Notas Técnicas", "email": "EMAIL_A_DEFINIR@cjf.jus.br" }
+        { "assunto": "Notas Técnicas", "email": "sce@cjf.jus.br" }
     ],
     "endereco": [
-        "ENDEREÇO A DEFINIR"
+        "Setor de Clubes Esportivos Sul (SCES), Trecho 3, Polo 8, Lote 9",
+        "Brasília - DF, CEP 70.200-003"
     ],
     "enderecoEstruturado": {
-        "logradouro": "A DEFINIR",
+        "logradouro": "SCES, Trecho 3, Polo 8, Lote 9",
         "cidade": "Brasília",
         "uf": "DF",
-        "cep": "00000-000"
+        "cep": "70200-003"
     }
 }
