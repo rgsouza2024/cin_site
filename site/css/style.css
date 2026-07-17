@@ -1753,10 +1753,6 @@ footer {
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .nav-links .nav-icon-link {
-        margin: 12px auto;
-    }
-
     .hero {
         padding: 60px 20px;
         min-height: 400px;
@@ -1972,29 +1968,6 @@ footer {
     margin-left: 2px;
 }
 
-/* Ícone isolado (sem rótulo) para acesso ao sistema legado Sistema CIn */
-.nav-links .nav-icon-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    margin-left: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 50%;
-    color: var(--white);
-    transition: all 0.3s ease;
-}
-
-.nav-links .nav-icon-link:hover,
-.nav-links .nav-icon-link:focus-visible {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.6);
-}
-
-.nav-links .nav-icon-link .svg-icon {
-    font-size: 16px;
-}
 
 /* Responsividade SINEMAF */
 @media (max-width: 768px) {
