@@ -48,11 +48,23 @@ permalink: /podcast/
                         </div>
                     </div>
                     <div class="documento-footer">
+                        {%- if ep.data %}
                         <span class="documento-meta"><time datetime="{{ ep.data }}">{{ ep.data | dataBr }}</time></span>
+                        {%- else %}
+                        <span class="documento-meta">Data a confirmar</span>
+                        {%- endif %}
+                        {%- if ep.spotify or ep.youtube %}
                         <span class="documento-links">
+                            {%- if ep.spotify %}
                             <a href="{{ ep.spotify }}" target="_blank" rel="noopener noreferrer" class="documento-link-plataforma" aria-label="Ouvir no Spotify">{% usarIcone "icone-spotify" %} Spotify</a>
+                            {%- endif %}
+                            {%- if ep.youtube %}
                             <a href="{{ ep.youtube }}" target="_blank" rel="noopener noreferrer" class="documento-link-plataforma" aria-label="Assistir no YouTube">{% usarIcone "icone-youtube" %} YouTube</a>
+                            {%- endif %}
                         </span>
+                        {%- else %}
+                        <span class="documento-meta">Link a confirmar</span>
+                        {%- endif %}
                     </div>
                 </article>
                 {%- endfor %}

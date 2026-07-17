@@ -2,10 +2,10 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://www.cjf.jus.br/cej/schemas/episodio-podcast/1.0",
     "title": "Episódio do Notas Técnicas em Podcast",
-    "description": "Catálogo de episódios do podcast do CIn. Sem custódia própria de áudio (fora de escopo por ora, ver CIN_PLANEJAMENTO.md) — cada episódio aponta para o Spotify e o YouTube, onde está de fato hospedado.",
+    "description": "Catálogo de episódios do podcast do CIn. Sem custódia própria de áudio (fora de escopo por ora, ver CIN_PLANEJAMENTO.md) — cada episódio aponta para o Spotify e o YouTube, onde está de fato hospedado. data/spotify/youtube são opcionais: nem todo episódio catalogado já teve esses dados confirmados (ver CIN_PLANEJAMENTO.md sobre achados parciais).",
     "version": "1.0",
     "type": "object",
-    "required": ["id", "titulo", "data", "notaRelacionada", "resumo", "spotify", "youtube"],
+    "required": ["id", "titulo", "notaRelacionada", "resumo"],
     "additionalProperties": false,
     "properties": {
         "id": {
@@ -18,9 +18,9 @@
             "minLength": 1
         },
         "data": {
-            "type": "string",
+            "type": ["string", "null"],
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-            "description": "Data de publicação da notícia/episódio, formato ISO."
+            "description": "Data de publicação da notícia/episódio, formato ISO. null quando ainda não confirmada."
         },
         "notaRelacionada": {
             "type": ["string", "null"],
@@ -32,12 +32,14 @@
             "minLength": 1
         },
         "spotify": {
-            "type": "string",
-            "pattern": "^https://open\\.spotify\\.com/"
+            "type": ["string", "null"],
+            "pattern": "^https://open\\.spotify\\.com/",
+            "description": "null quando o link do episódio ainda não foi levantado."
         },
         "youtube": {
-            "type": "string",
-            "pattern": "^https://(www\\.)?(youtube\\.com|youtu\\.be)/"
+            "type": ["string", "null"],
+            "pattern": "^https://(www\\.)?(youtube\\.com|youtu\\.be)/",
+            "description": "null quando o link do episódio ainda não foi levantado."
         }
     }
 }

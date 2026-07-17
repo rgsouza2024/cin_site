@@ -1,30 +1,102 @@
 [
     {
-        "id": "nt-2025-61",
-        "titulo": "Execução de sentenças coletivas e legitimidade do Ministério Público",
-        "data": "2025-11-17",
-        "notaRelacionada": "nt-2025-61",
-        "resumo": "Análise do Tema n. 1.270 do STF sobre a legitimidade do Ministério Público para promover liquidação coletiva de sentença em ações civis públicas, com foco na efetividade do processo coletivo e na racionalização da prestação jurisdicional.",
-        "spotify": "https://open.spotify.com/episode/3uWyPDqrEhWSdNpE4immM3",
-        "youtube": "https://www.youtube.com/watch?v=9zBLvgPPccc"
+        "id": "nt-2024-48",
+        "titulo": "Instrução Concentrada em aposentadorias rural e híbrida",
+        "data": "2024-10-02",
+        "notaRelacionada": "nt-2024-48",
+        "resumo": "Episódio inaugural do programa, com apresentação do juiz federal Eurico Zecchin Maiolino sobre a Instrução Concentrada em ações de aposentadoria por idade rural e híbrida.",
+        "spotify": null,
+        "youtube": null
     },
     {
-        "id": "nt-2025-63",
-        "titulo": "Litigiosidade anômala e o Sistema de Informações de Crédito",
-        "data": "2025-11-26",
-        "notaRelacionada": "nt-2025-63",
-        "resumo": "Padrões anômalos de litígios relacionados ao Sistema de Informações de Crédito (SCR) do Banco Central, a confusão proposital entre o SCR e cadastros restritivos como SPC e Serasa, e a posição do STJ sobre exclusão de dados corretos após cinco anos.",
-        "spotify": "https://open.spotify.com/episode/0dL4bTEbFESiFKIUXxfxbI",
-        "youtube": "https://www.youtube.com/watch?v=sEwjoP71hFI"
+        "id": "nt-2024-49",
+        "titulo": "Formulários-padrão online nos Juizados Especiais Federais",
+        "data": null,
+        "notaRelacionada": "nt-2024-49",
+        "resumo": "Novo episódio do Notas Técnicas em Podcast explora a implementação de formulários-padrão online para a distribuição de processos.",
+        "spotify": null,
+        "youtube": null
     },
     {
-        "id": "nt-2025-60",
-        "titulo": "Descontos indevidos em benefícios previdenciários",
-        "data": "2025-11-13",
-        "notaRelacionada": "nt-2025-60",
-        "resumo": "Ações repetitivas de desconstituição e indenização decorrentes de descontos indevidos em benefícios previdenciários realizados por associações e sindicatos, com estratégias preventivas para o tratamento adequado das demandas.",
-        "spotify": "https://open.spotify.com/episode/0o7sxD8HPDngKlmhGtLkw6",
-        "youtube": "https://www.youtube.com/watch?v=3pVb62ad2qY"
+        "id": "nt-2024-50",
+        "titulo": "Protocolos de atuação em grandes desastres ambientais",
+        "data": null,
+        "notaRelacionada": "nt-2024-50",
+        "resumo": "Programa Notas Técnicas em Podcast aborda protocolos de atuação em casos de grandes desastres ambientais.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2024-51",
+        "titulo": "Execuções fiscais e o Tema 1.184 do STF",
+        "data": null,
+        "notaRelacionada": "nt-2024-51",
+        "resumo": "Execuções fiscais são tema do episódio, diante do julgamento do Tema 1.184 do STF e da Resolução CNJ n. 547/2024, que estabeleceu critérios para a extinção de execuções fiscais.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-52",
+        "titulo": "Inadmissibilidade de recurso especial em benefício por incapacidade",
+        "data": null,
+        "notaRelacionada": "nt-2025-52",
+        "resumo": "Discute a inadmissibilidade de recurso especial em casos de benefício por incapacidade, a partir de impactos e sugestões decorrentes do Tema Repetitivo n. 1.246 do STJ.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-53",
+        "titulo": "Natureza dos honorários advocatícios nos juizados",
+        "data": null,
+        "notaRelacionada": "nt-2025-53",
+        "resumo": "Divergência na uniformização de jurisprudência sobre a natureza material ou processual dos honorários advocatícios nos juizados especiais, apresentado pela juíza federal Eliana Rita Maia Di Pierro (TRF3).",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-54",
+        "titulo": "Unificação de penas de reclusão e detenção",
+        "data": null,
+        "notaRelacionada": "nt-2025-54",
+        "resumo": "Controvérsia jurisprudencial sobre a possibilidade de unificar e somar as penas de reclusão e detenção para definir o regime inicial de cumprimento de pena.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-55",
+        "titulo": "Medidas preventivas em ações coletivas",
+        "data": null,
+        "notaRelacionada": "nt-2025-55",
+        "resumo": "Ações coletivas, tema aprovado na reunião de 10 de março do Grupo Decisório do CIn, com apresentação da juíza Paula Fernanda de Souza Vasconcelos Navarro (TJSP).",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-56",
+        "titulo": "Aprimoramento das execuções fiscais",
+        "data": null,
+        "notaRelacionada": "nt-2025-56",
+        "resumo": "Mapeamento das medidas adotadas para aprimorar o processamento e o julgamento das execuções fiscais, entre as principais responsáveis pela alta taxa de congestionamento do Judiciário.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-57",
+        "titulo": "Competência para concessão judicial de medicamentos",
+        "data": null,
+        "notaRelacionada": "nt-2025-57",
+        "resumo": "Competência para julgamento e requisitos para concessão judicial de medicamentos, à luz dos Temas n. 6 e n. 1.234 do STF.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-58",
+        "titulo": "Cumprimento de decisões que concedem medicamentos",
+        "data": null,
+        "notaRelacionada": "nt-2025-58",
+        "resumo": "Cumprimento de decisões judiciais que concedem medicamentos é o assunto do episódio, com recomendações sobre a matéria.",
+        "spotify": null,
+        "youtube": null
     },
     {
         "id": "nt-2025-59",
@@ -36,6 +108,42 @@
         "youtube": "https://youtu.be/stxfVKFLQF4"
     },
     {
+        "id": "nt-2025-60",
+        "titulo": "Descontos indevidos em benefícios previdenciários",
+        "data": "2025-11-13",
+        "notaRelacionada": "nt-2025-60",
+        "resumo": "Ações repetitivas de desconstituição e indenização decorrentes de descontos indevidos em benefícios previdenciários realizados por associações e sindicatos, com estratégias preventivas para o tratamento adequado das demandas.",
+        "spotify": "https://open.spotify.com/episode/0o7sxD8HPDngKlmhGtLkw6",
+        "youtube": "https://www.youtube.com/watch?v=3pVb62ad2qY"
+    },
+    {
+        "id": "nt-2025-61",
+        "titulo": "Execução de sentenças coletivas e legitimidade do Ministério Público",
+        "data": "2025-11-17",
+        "notaRelacionada": "nt-2025-61",
+        "resumo": "Análise do Tema n. 1.270 do STF sobre a legitimidade do Ministério Público para promover liquidação coletiva de sentença em ações civis públicas, com foco na efetividade do processo coletivo e na racionalização da prestação jurisdicional.",
+        "spotify": "https://open.spotify.com/episode/3uWyPDqrEhWSdNpE4immM3",
+        "youtube": "https://www.youtube.com/watch?v=9zBLvgPPccc"
+    },
+    {
+        "id": "nt-2025-62",
+        "titulo": "Atuação dos entes federativos com a população em situação de rua",
+        "data": null,
+        "notaRelacionada": "nt-2025-62",
+        "resumo": "Atuação dos entes federativos em políticas voltadas à população em situação de rua, no âmbito do apoio a processos estruturais da ADPF 976.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
+        "id": "nt-2025-63",
+        "titulo": "Litigiosidade anômala e o Sistema de Informações de Crédito",
+        "data": "2025-11-26",
+        "notaRelacionada": "nt-2025-63",
+        "resumo": "Padrões anômalos de litígios relacionados ao Sistema de Informações de Crédito (SCR) do Banco Central, a confusão proposital entre o SCR e cadastros restritivos como SPC e Serasa, e a posição do STJ sobre exclusão de dados corretos após cinco anos.",
+        "spotify": "https://open.spotify.com/episode/0dL4bTEbFESiFKIUXxfxbI",
+        "youtube": "https://www.youtube.com/watch?v=sEwjoP71hFI"
+    },
+    {
         "id": "nt-2026-64",
         "titulo": "Tema Repetitivo 1.396 e a racionalização do acesso ao Judiciário",
         "data": "2026-05-12",
@@ -45,6 +153,15 @@
         "youtube": "https://www.youtube.com/watch?v=dsebkKQlEZg"
     },
     {
+        "id": "nt-2026-65",
+        "titulo": "Diretrizes nacionais para uso seguro da IA generativa",
+        "data": null,
+        "notaRelacionada": "nt-2026-65",
+        "resumo": "Diretrizes nacionais para uso seguro e responsável da IA generativa, ratificando notas técnicas do TRF1 e da Seção Judiciária do Rio Grande do Norte sobre o tema.",
+        "spotify": null,
+        "youtube": null
+    },
+    {
         "id": "nt-2026-66",
         "titulo": "Cotas em concursos e seleções públicas",
         "data": "2026-05-26",
@@ -52,5 +169,14 @@
         "resumo": "Políticas de cotas para candidatos pretos e pardos em processos seletivos públicos, reforçando segurança jurídica e equidade nos concursos e ratificando documento anterior sobre enquadramento de cotistas.",
         "spotify": "https://open.spotify.com/episode/6JN1oda0tDSRRhnTBgvjoi",
         "youtube": "https://www.youtube.com/watch?v=bzFU_ExJKhE"
+    },
+    {
+        "id": "nt-2026-67",
+        "titulo": "Cessão de créditos em precatórios e RPVs",
+        "data": null,
+        "notaRelacionada": "nt-2026-67",
+        "resumo": "Requisitos, procedimentos e limites da cessão de créditos inscritos em precatórios e requisições de pequeno valor (RPVs) na Justiça Federal, apresentado pelo juiz federal Fernando Caldas Bivar Neto (TRF3).",
+        "spotify": null,
+        "youtube": null
     }
 ]
