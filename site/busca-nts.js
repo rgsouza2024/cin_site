@@ -47,6 +47,33 @@ async function initBuscaNts() {
         limparBtn.hidden = input.value.length === 0;
     }
 
+    // Extrai numero/ano do título "Nota Técnica CIn n. 64/2026" para comparar
+    // com uma busca no formato numérico (ver priorizarPorNumero).
+    function numeroENoDoTitulo(titulo) {
+        const m = (titulo || "").match(/n\.\s*(\d{1,3})\/(\d{4})/i);
+        return m ? { numero: parseInt(m[1], 10), ano: m[2] } : null;
+    }
+
+    // Busca por número (ex.: "64" ou "64/2026") é ambígua em texto integral —
+    // "64" aparece tanto no número da NT quanto em qualquer artigo de lei
+    // citado no corpo. Quando o termo bate nesse padrão, a NT cujo número
+    // corresponde exatamente sobe para o topo, sem descartar os demais
+    // resultados nem mudar a busca em si (só reordena o que o Pagefind já
+    // retornou).
+    function priorizarPorNumero(resultados, termo) {
+        const m = termo.match(/^(\d{1,3})(?:\/(\d{4}))?$/);
+        if (!m) return resultados;
+        const numeroBuscado = parseInt(m[1], 10);
+        const anoBuscado = m[2];
+
+        const prioridade = (r) => {
+            const info = numeroENoDoTitulo(r.meta.title);
+            const bate = info && info.numero === numeroBuscado && (!anoBuscado || info.ano === anoBuscado);
+            return bate ? 0 : 1;
+        };
+        return [...resultados].sort((a, b) => prioridade(a) - prioridade(b));
+    }
+
     async function buscar(termo) {
         const ano = anoSelect.value;
 
@@ -59,7 +86,8 @@ async function initBuscaNts() {
         const busca = await pagefind.search(termo, {
             filters: ano ? { ano } : undefined,
         });
-        const resultados = await Promise.all(busca.results.slice(0, 30).map((r) => r.data()));
+        let resultados = await Promise.all(busca.results.slice(0, 30).map((r) => r.data()));
+        resultados = priorizarPorNumero(resultados, termo);
 
         // Só troca a tela se o termo/ano ainda forem os que estão nos campos —
         // evita uma resposta lenta e antiga sobrescrever uma busca mais recente.
@@ -116,6 +144,22 @@ async function initBuscaNts() {
 
     // Estado inicial: sem busca, listagem completa (sem filtro de ano ainda)
     filtrarListagem();
+
+    // Restauração via bfcache (ex.: botão "voltar" após abrir uma NT): a página
+    // volta de uma foto congelada sem disparar DOMContentLoaded, então o painel
+    // de resultados e o botão de limpar ficam como estavam antes de sair,
+    // enquanto o navegador some com o valor exibido no campo de busca — os dois
+    // saem dessincronizados do estado real do input. Resincroniza aqui.
+    window.addEventListener('pageshow', (evento) => {
+        if (!evento.persisted) return;
+        atualizarBotaoLimpar();
+        const termo = input.value.trim();
+        if (termo) buscar(termo);
+        else {
+            wrapEl.classList.remove('buscando');
+            filtrarListagem();
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', initBuscaNts);
