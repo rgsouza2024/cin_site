@@ -120,30 +120,13 @@ footer a:focus-visible,
    ============================================ */
 
 .header-wrapper {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    position: relative;
+    width: 100%;
 }
 
 header {
     background-color: var(--white);
     padding: 8px 0;
-    max-height: 200px;
-    opacity: 1;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
-}
-
-.header-wrapper.scrolled header {
-    max-height: 0;
-    padding: 0;
-    opacity: 0;
-}
-
-.header-wrapper.scrolled {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .header-container {
@@ -170,10 +153,14 @@ header {
     width: auto;
 }
 
-/* Navigation */
+/* Navigation - Fixa suavemente no topo sem oscilação de layout (zero CLS) */
 nav {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {

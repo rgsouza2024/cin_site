@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initSmoothScroll();
     initParallaxScroll();
-    initHeaderShrink();
     initScrollSpy();
 });
 
@@ -123,38 +122,6 @@ function initScrollSpy() {
         }, { rootMargin: '-30% 0px -45% 0px' });
         topoObserver.observe(hero);
     }
-}
-
-// ============================================
-// HEADER SHRINK (Scroll shrink para cabeçalho dinâmico)
-// ============================================
-
-function initHeaderShrink() {
-    const headerWrapper = document.getElementById('headerWrapper');
-    if (!headerWrapper) return;
-
-    let ticking = false;
-
-    function updateHeader() {
-        const scrollY = window.scrollY;
-        // Histerese para evitar loop de oscilação
-        if (scrollY > 180) {
-            headerWrapper.classList.add('scrolled');
-        } else if (scrollY < 60) {
-            headerWrapper.classList.remove('scrolled');
-        }
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            requestAnimationFrame(updateHeader);
-            ticking = true;
-        }
-    }, { passive: true });
-
-    // Executa uma vez no carregamento
-    updateHeader();
 }
 
 // ============================================
