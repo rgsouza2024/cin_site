@@ -24,6 +24,18 @@ async function initBuscaNts() {
         return;
     }
 
+    // Sincroniza parâmetros de busca com a URL (q e ano) via History API
+    function atualizarURL(termo, ano) {
+        const params = new URLSearchParams();
+        if (termo) params.set('q', termo);
+        if (ano) params.set('ano', ano);
+        const query = params.toString();
+        const novaUrl = query ? `${location.pathname}?${query}` : location.pathname;
+        if (location.search !== (query ? `?${query}` : '')) {
+            history.replaceState(null, '', novaUrl);
+        }
+    }
+
     // Sem termo de busca: filtra a listagem completa por ano no próprio DOM
     // (não precisa do Pagefind — mais rápido e funciona sem o índice).
     function filtrarListagem() {
@@ -41,6 +53,7 @@ async function initBuscaNts() {
         if (contagemEl) {
             contagemEl.textContent = ano ? `${visiveis} Nota(s) Técnica(s) de ${ano}` : '';
         }
+        atualizarURL('', ano);
     }
 
     function atualizarBotaoLimpar() {
@@ -119,6 +132,8 @@ async function initBuscaNts() {
                 </article>`
             )
             .join('');
+
+        atualizarURL(termo, ano);
     }
 
     let temporizador;
@@ -142,8 +157,40 @@ async function initBuscaNts() {
         input.focus();
     });
 
-    // Estado inicial: sem busca, listagem completa (sem filtro de ano ainda)
-    filtrarListagem();
+    // Estado inicial vindo da URL (ex.: /notas-tecnicas/?q=previdenciario&ano=2024)
+    const paramsIniciais = new URLSearchParams(window.location.search);
+    const termoInicial = (paramsIniciais.get('q') || '').trim();
+    const anoInicial = (paramsIniciais.get('ano') || '').trim();
+
+    if (anoInicial && Array.from(anoSelect.options).some((o) => o.value === anoInicial)) {
+        anoSelect.value = anoInicial;
+    }
+
+    if (termoInicial) {
+        input.value = termoInicial;
+        atualizarBotaoLimpar();
+        wrapEl.classList.add('buscando');
+        buscar(termoInicial);
+    } else {
+        filtrarListagem();
+    }
+
+    // Suporte aos botões voltar/avançar do navegador com parâmetros na URL
+    window.addEventListener('popstate', () => {
+        const params = new URLSearchParams(window.location.search);
+        const q = (params.get('q') || '').trim();
+        const a = (params.get('ano') || '').trim();
+        input.value = q;
+        anoSelect.value = a;
+        atualizarBotaoLimpar();
+        if (q) {
+            wrapEl.classList.add('buscando');
+            buscar(q);
+        } else {
+            wrapEl.classList.remove('buscando');
+            filtrarListagem();
+        }
+    });
 
     // Restauração via bfcache (ex.: botão "voltar" após abrir uma NT): a página
     // volta de uma foto congelada sem disparar DOMContentLoaded, então o painel
