@@ -114,7 +114,6 @@ module.exports = function (eleventyConfig) {
         "site/assets": "assets",
         "site/script.js": "script.js",
         "site/menu.js": "menu.js",
-        "site/acervo.js": "acervo.js",
         "site/busca-nts.js": "busca-nts.js",
         "site/busca-podcast.js": "busca-podcast.js",
         "site/cin_logo.webp": "cin_logo.webp",
