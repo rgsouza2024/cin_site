@@ -4,10 +4,11 @@
    ============================================ */
 
 :root {
-    /* Cores Oficiais da Justiça Federal (Manual) */
+    /* Cores Oficiais da Justiça Federal (Manual e Acessibilidade) */
     --jf-blue: #002F6C;
     --jf-green: #007A33;
-    --jf-gray: #97999F; /* 2,85:1 sobre branco — abaixo do mínimo AA (4.5:1 texto, 3:1 texto grande). Usar só em ícones/bordas, nunca em texto. */
+    --jf-gray: #5c6068; /* 5.7:1 sobre branco — em conformidade com WCAG 2.1 AA (mínimo 4.5:1 para texto e 3:1 para UI) */
+    --jf-gray-light: #97999F; /* Usar exclusivamente em bordas sutis/decorativas não informativas */
 
     /* Derivadas das cores oficiais */
     --jf-blue-light: #003d8a;
