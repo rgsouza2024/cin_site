@@ -1155,6 +1155,29 @@ nav {
     margin-right: 0;
 }
 
+/* Cabeçalho de página individual de Nota Técnica */
+.page-header-nt .section-title,
+.page-header-nt .section-subtitle,
+.page-header-nt .acervo-nota,
+.page-header-nt .documento-meta {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.page-header-nt .section-title {
+    margin-bottom: 10px;
+}
+
+.page-header-nt .section-subtitle {
+    margin: 0 0 12px;
+    max-width: 100%;
+}
+
+.page-header-nt .documento-meta {
+    font-size: 14px;
+}
+
 @media (max-width: 768px) {
     .page-header-grid {
         grid-template-columns: 1fr;

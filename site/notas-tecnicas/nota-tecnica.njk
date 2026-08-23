@@ -10,11 +10,11 @@ eleventyComputed:
     description: "{{ nt.descricao }}"
 ---
     <!-- Cabeçalho da página -->
-    <section class="page-header">
+    <section class="page-header page-header-nt">
         <div class="container">
             <p class="acervo-nota"><a href="/notas-tecnicas/">{% icone "solid/arrow-left" %} Notas Técnicas</a></p>
-            <h1 class="section-title" style="text-align:left; margin-bottom:10px;">{{ nt.titulo }}</h1>
-            <p class="section-subtitle" style="text-align:left; margin:0 0 10px;">{{ nt.descricao }}</p>
+            <h1 class="section-title">{{ nt.titulo }}</h1>
+            <p class="section-subtitle">{{ nt.descricao }}</p>
             <p class="documento-meta">
                 {%- if nt.autor %}{{ nt.autor }} · {% endif -%}
                 <time datetime="{{ nt.ano }}">{{ nt.ano }}</time>
